@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-07-14",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 65043.98,
+    "open": 62334.52,
+    "high": 65100.0,
+    "low": 62272.2,
+    "change_1d_pct": 4.35,
+    "change_7d_pct": 2.65,
+    "change_30d_pct": -1.07
+  },
+  "indicators": {
+    "rsi14": 56.32,
+    "ma20": 62070.43,
+    "ma50": 64401.83,
+    "macd_line": -80.4,
+    "macd_signal": -549.72,
+    "macd_hist": 469.32,
+    "bb_upper": 65790.32,
+    "bb_middle": 62070.43,
+    "bb_lower": 58350.55,
+    "bb_percent_b": 0.9,
+    "volume": 20552.41,
+    "volume_ma20": 17574.33,
+    "volume_ratio": 1.17
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 22,
+      "classification": "Extreme Fear",
+      "date": "2026-07-14",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -40,
+      "label": "MA20 di bawah MA50",
+      "detail": "MA20 62,070 < MA50 64,402 - struktur tren jangka pendek turun"
+    },
+    {
+      "id": "price_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 30,
+      "label": "Harga di atas MA50",
+      "detail": "Close 65,044 vs MA50 64,402"
+    },
+    {
+      "id": "macd_hist_positif",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "Histogram MACD positif",
+      "detail": "Histogram 469.3 - momentum masih di sisi naik"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bullish",
+      "score": 56,
+      "label": "Sentimen pasar: Extreme Fear",
+      "detail": "Fear & Greed Index 22 (Extreme Fear)"
+    }
+  ],
+  "scores": {
+    "composite": 20,
+    "label": "bullish",
+    "by_category": {
+      "trend": -10,
+      "momentum": 25,
+      "sentiment": 56
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25
+    }
+  },
+  "meta": {
+    "candles_used": 105,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

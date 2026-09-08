@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-06-11",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 63625.99,
+    "open": 61510.99,
+    "high": 63933.02,
+    "low": 61510.99,
+    "change_1d_pct": 3.44,
+    "change_7d_pct": -0.41,
+    "change_30d_pct": -20.97
+  },
+  "indicators": {
+    "rsi14": 33.13,
+    "ma20": 68878.99,
+    "ma50": 74762.03,
+    "macd_line": -3955.93,
+    "macd_signal": -3460.42,
+    "macd_hist": -495.5,
+    "bb_upper": 81152.45,
+    "bb_middle": 68878.99,
+    "bb_lower": 56605.54,
+    "bb_percent_b": 0.286,
+    "volume": 17380.95,
+    "volume_ma20": 21472.51,
+    "volume_ratio": 0.81
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 12,
+      "classification": "Extreme Fear",
+      "date": "2026-06-11",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -40,
+      "label": "MA20 di bawah MA50",
+      "detail": "MA20 68,879 < MA50 74,762 - struktur tren jangka pendek turun"
+    },
+    {
+      "id": "price_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -30,
+      "label": "Harga di bawah MA50",
+      "detail": "Close 63,626 vs MA50 74,762"
+    },
+    {
+      "id": "rsi_lemah",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "RSI lemah",
+      "detail": "RSI(14) 33.1 mendekati wilayah oversold"
+    },
+    {
+      "id": "macd_hist_negatif",
+      "category": "momentum",
+      "direction": "bearish",
+      "score": -25,
+      "label": "Histogram MACD negatif",
+      "detail": "Histogram -495.5 - momentum masih di sisi turun"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bullish",
+      "score": 76,
+      "label": "Sentimen pasar: Extreme Fear",
+      "detail": "Fear & Greed Index 12 (Extreme Fear)"
+    }
+  ],
+  "scores": {
+    "composite": -6,
+    "label": "netral",
+    "by_category": {
+      "trend": -70,
+      "momentum": 0,
+      "sentiment": 76
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25
+    }
+  },
+  "meta": {
+    "candles_used": 72,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

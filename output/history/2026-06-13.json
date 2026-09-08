@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-06-13",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 64458.01,
+    "open": 63580.0,
+    "high": 64762.77,
+    "low": 63418.66,
+    "change_1d_pct": 1.38,
+    "change_7d_pct": 5.87,
+    "change_30d_pct": -20.51
+  },
+  "indicators": {
+    "rsi14": 36.7,
+    "ma20": 67590.05,
+    "ma50": 74208.9,
+    "macd_line": -3517.78,
+    "macd_signal": -3522.01,
+    "macd_hist": 4.23,
+    "bb_upper": 78891.29,
+    "bb_middle": 67590.05,
+    "bb_lower": 56288.8,
+    "bb_percent_b": 0.361,
+    "volume": 9960.74,
+    "volume_ma20": 21616.15,
+    "volume_ratio": 0.46
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 13,
+      "classification": "Extreme Fear",
+      "date": "2026-06-13",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -40,
+      "label": "MA20 di bawah MA50",
+      "detail": "MA20 67,590 < MA50 74,209 - struktur tren jangka pendek turun"
+    },
+    {
+      "id": "price_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -30,
+      "label": "Harga di bawah MA50",
+      "detail": "Close 64,458 vs MA50 74,209"
+    },
+    {
+      "id": "rsi_lemah",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "RSI lemah",
+      "detail": "RSI(14) 36.7 mendekati wilayah oversold"
+    },
+    {
+      "id": "macd_bullish_cross",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 50,
+      "label": "MACD cross bullish",
+      "detail": "MACD memotong signal line ke atas 0 hari lalu"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bullish",
+      "score": 74,
+      "label": "Sentimen pasar: Extreme Fear",
+      "detail": "Fear & Greed Index 13 (Extreme Fear)"
+    }
+  ],
+  "scores": {
+    "composite": 15,
+    "label": "netral",
+    "by_category": {
+      "trend": -70,
+      "momentum": 75,
+      "sentiment": 74
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25
+    }
+  },
+  "meta": {
+    "candles_used": 74,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

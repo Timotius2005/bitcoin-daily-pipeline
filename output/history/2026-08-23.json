@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-08-23",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 77734.0,
+    "open": 77074.94,
+    "high": 78052.85,
+    "low": 75545.67,
+    "change_1d_pct": 0.86,
+    "change_7d_pct": 23.58,
+    "change_30d_pct": 21.19
+  },
+  "indicators": {
+    "rsi14": 80.82,
+    "ma20": 66810.88,
+    "ma50": 65203.69,
+    "macd_line": 2989.4,
+    "macd_signal": 1348.09,
+    "macd_hist": 1641.31,
+    "bb_upper": 77054.5,
+    "bb_middle": 66810.88,
+    "bb_lower": 56567.27,
+    "bb_percent_b": 1.033,
+    "volume": 15367.23,
+    "volume_ma20": 15178.33,
+    "volume_ratio": 1.01
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 66,
+      "classification": "Greed",
+      "date": "2026-08-23",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 40,
+      "label": "MA20 di atas MA50",
+      "detail": "MA20 66,811 > MA50 65,204 - struktur tren jangka pendek naik"
+    },
+    {
+      "id": "price_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 30,
+      "label": "Harga di atas MA50",
+      "detail": "Close 77,734 vs MA50 65,204"
+    },
+    {
+      "id": "rsi_overbought",
+      "category": "momentum",
+      "direction": "bearish",
+      "score": -50,
+      "label": "RSI overbought",
+      "detail": "RSI(14) 80.8 di atas 70"
+    },
+    {
+      "id": "macd_hist_positif",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "Histogram MACD positif",
+      "detail": "Histogram 1,641.3 - momentum masih di sisi naik"
+    },
+    {
+      "id": "bb_break_atas",
+      "category": "volatility",
+      "direction": "bearish",
+      "score": -60,
+      "label": "Harga menembus upper Bollinger Band",
+      "detail": "Close 77,734 di atas upper band 77,054"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bearish",
+      "score": -32,
+      "label": "Sentimen pasar: Greed",
+      "detail": "Fear & Greed Index 66 (Greed)"
+    }
+  ],
+  "scores": {
+    "composite": 1,
+    "label": "netral",
+    "by_category": {
+      "trend": 70,
+      "momentum": -25,
+      "volatility": -60,
+      "sentiment": -32
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25,
+      "volatility": 0.15
+    }
+  },
+  "meta": {
+    "candles_used": 145,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

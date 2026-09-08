@@ -1,0 +1,101 @@
+{
+  "generated_at": "2026-09-08T13:40:38+00:00",
+  "data_as_of": "2026-09-07",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 79112.01,
+    "open": 80341.83,
+    "high": 80443.99,
+    "low": 78680.0,
+    "change_1d_pct": -1.53,
+    "change_7d_pct": 0.68,
+    "change_30d_pct": 21.78
+  },
+  "indicators": {
+    "rsi14": 62.73,
+    "ma20": 77982.35,
+    "ma50": 69730.69,
+    "macd_line": 3068.5,
+    "macd_signal": 3328.93,
+    "macd_hist": -260.43,
+    "bb_upper": 83140.84,
+    "bb_middle": 77982.35,
+    "bb_lower": 72823.86,
+    "bb_percent_b": 0.609,
+    "volume": 10572.45,
+    "volume_ma20": 18746.74,
+    "volume_ratio": 0.56
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 69,
+      "classification": "Greed",
+      "date": "2026-09-08",
+      "value_yesterday": 71
+    },
+    "btc_dominance_pct": 58.93,
+    "market_cap_change_24h_pct": -4.35
+  },
+  "signals": [
+    {
+      "id": "ma20_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 40,
+      "label": "MA20 di atas MA50",
+      "detail": "MA20 77,982 > MA50 69,731 - struktur tren jangka pendek naik"
+    },
+    {
+      "id": "price_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 30,
+      "label": "Harga di atas MA50",
+      "detail": "Close 79,112 vs MA50 69,731"
+    },
+    {
+      "id": "rsi_tinggi",
+      "category": "momentum",
+      "direction": "bearish",
+      "score": -25,
+      "label": "RSI tinggi",
+      "detail": "RSI(14) 62.7 mendekati wilayah overbought"
+    },
+    {
+      "id": "macd_bearish_cross",
+      "category": "momentum",
+      "direction": "bearish",
+      "score": -50,
+      "label": "MACD cross bearish",
+      "detail": "MACD memotong signal line ke bawah 3 hari lalu"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bearish",
+      "score": -38,
+      "label": "Sentimen pasar: Greed",
+      "detail": "Fear & Greed Index 69 (Greed)"
+    }
+  ],
+  "scores": {
+    "composite": -4,
+    "label": "netral",
+    "by_category": {
+      "trend": 70,
+      "momentum": -75,
+      "sentiment": -38
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25
+    }
+  },
+  "meta": {
+    "candles_used": 200,
+    "fetched_at": "2026-09-08T13:40:38+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1
+  }
+}

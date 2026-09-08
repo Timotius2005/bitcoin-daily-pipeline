@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-06-26",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 60097.27,
+    "open": 59794.64,
+    "high": 60759.99,
+    "low": 58337.0,
+    "change_1d_pct": 0.51,
+    "change_7d_pct": -5.42,
+    "change_30d_pct": -19.28
+  },
+  "indicators": {
+    "rsi14": 32.01,
+    "ma20": 63270.92,
+    "ma50": 70294.22,
+    "macd_line": -2276.48,
+    "macd_signal": -2274.96,
+    "macd_hist": -1.52,
+    "bb_upper": 66705.46,
+    "bb_middle": 63270.92,
+    "bb_lower": 59836.38,
+    "bb_percent_b": 0.038,
+    "volume": 27403.56,
+    "volume_ma20": 18450.32,
+    "volume_ratio": 1.49
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 13,
+      "classification": "Extreme Fear",
+      "date": "2026-06-26",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -40,
+      "label": "MA20 di bawah MA50",
+      "detail": "MA20 63,271 < MA50 70,294 - struktur tren jangka pendek turun"
+    },
+    {
+      "id": "price_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -30,
+      "label": "Harga di bawah MA50",
+      "detail": "Close 60,097 vs MA50 70,294"
+    },
+    {
+      "id": "rsi_lemah",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "RSI lemah",
+      "detail": "RSI(14) 32.0 mendekati wilayah oversold"
+    },
+    {
+      "id": "macd_bearish_cross",
+      "category": "momentum",
+      "direction": "bearish",
+      "score": -50,
+      "label": "MACD cross bearish",
+      "detail": "MACD memotong signal line ke bawah 0 hari lalu"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bullish",
+      "score": 74,
+      "label": "Sentimen pasar: Extreme Fear",
+      "detail": "Fear & Greed Index 13 (Extreme Fear)"
+    }
+  ],
+  "scores": {
+    "composite": -14,
+    "label": "netral",
+    "by_category": {
+      "trend": -70,
+      "momentum": -25,
+      "sentiment": 74
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25
+    }
+  },
+  "meta": {
+    "candles_used": 87,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-07-23",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 65098.97,
+    "open": 66114.5,
+    "high": 66313.14,
+    "low": 64650.0,
+    "change_1d_pct": -1.54,
+    "change_7d_pct": 1.99,
+    "change_30d_pct": 3.77
+  },
+  "indicators": {
+    "rsi14": 53.98,
+    "ma20": 64197.96,
+    "ma50": 63157.26,
+    "macd_line": 574.05,
+    "macd_signal": 274.86,
+    "macd_hist": 299.19,
+    "bb_upper": 66369.52,
+    "bb_middle": 64197.96,
+    "bb_lower": 62026.41,
+    "bb_percent_b": 0.707,
+    "volume": 14698.23,
+    "volume_ma20": 15965.87,
+    "volume_ratio": 0.92
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 31,
+      "classification": "Fear",
+      "date": "2026-07-23",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 40,
+      "label": "MA20 di atas MA50",
+      "detail": "MA20 64,198 > MA50 63,157 - struktur tren jangka pendek naik"
+    },
+    {
+      "id": "golden_cross",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 30,
+      "label": "Golden cross MA20/MA50",
+      "detail": "MA20 memotong MA50 ke atas 3 hari lalu"
+    },
+    {
+      "id": "price_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 30,
+      "label": "Harga di atas MA50",
+      "detail": "Close 65,099 vs MA50 63,157"
+    },
+    {
+      "id": "macd_hist_positif",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "Histogram MACD positif",
+      "detail": "Histogram 299.2 - momentum masih di sisi naik"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bullish",
+      "score": 38,
+      "label": "Sentimen pasar: Fear",
+      "detail": "Fear & Greed Index 31 (Fear)"
+    }
+  ],
+  "scores": {
+    "composite": 60,
+    "label": "bullish kuat",
+    "by_category": {
+      "trend": 100,
+      "momentum": 25,
+      "sentiment": 38
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25
+    }
+  },
+  "meta": {
+    "candles_used": 114,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

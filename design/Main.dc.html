@@ -1,0 +1,728 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap">
+  <style>
+    body {
+      margin: 0;
+      background: #121214;
+      color: #FFFFFF;
+      font-family: "Chakra Petch", "Bai Jamjuree", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #00F0FF; text-decoration: none; }
+    a:hover { color: #CCFF00; }
+
+    .kicker {
+      font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #6B6B78;
+    }
+    .num {
+      font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    .head {
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+    /* Sudut dipotong menyudut, bukan dibulatkan — bahasa bentuk HUD. */
+    .cut { clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px); }
+
+    @keyframes riseIn   { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    @keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes ruleIn   { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes drawLine { to { stroke-dashoffset: 0; } }
+    @keyframes growL    { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes dropIn   { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+    @keyframes bloomIn  { from { opacity: 0; transform: scale(0.82); } to { opacity: 1; transform: scale(1); } }
+    @keyframes beat     { 0%, 100% { opacity: 1; box-shadow: 0 0 8px 1px rgba(204, 255, 0, 0.7); } 50% { opacity: 0.35; box-shadow: 0 0 2px 0 rgba(204, 255, 0, 0.2); } }
+
+    .rise  { animation: riseIn 0.75s cubic-bezier(0.2, 0.75, 0.2, 1) both; }
+    .fade  { animation: fadeIn 1s ease both; }
+    .rule  { transform-origin: left center; animation: ruleIn 1.1s cubic-bezier(0.25, 0.8, 0.25, 1) both; }
+    .draw  { stroke-dasharray: 5400; stroke-dashoffset: 5400; animation: drawLine 2.1s cubic-bezier(0.35, 0, 0.15, 1) 0.5s forwards; }
+    .barL  { transform-origin: left center;  animation: growL 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+    .barR  { transform-origin: right center; animation: growL 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+    .drop  { animation: dropIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+    .bloom { animation: bloomIn 1.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both; }
+    .live  { animation: beat 2.4s ease-in-out infinite; }
+
+    .sig-row { transition: background-color 0.2s ease, box-shadow 0.2s ease; }
+    .sig-row:hover { background-color: #17171B; box-shadow: inset 2px 0 0 #CCFF00; }
+    .sig-row:hover .sig-detail { color: #9A9AA8; }
+    .sig-detail { transition: color 0.2s ease; }
+    .tbl-row { transition: background-color 0.18s ease; }
+    .tbl-row:hover { background-color: #17171B; }
+    .seg { transition: background-color 0.2s ease, color 0.2s ease; }
+    .seg:hover { background-color: #1E1E24; color: #CCFF00; }
+
+    .no-motion *, .no-motion *::before, .no-motion *::after { animation: none !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</helmet>
+
+<div class="{{ rootClass }}" style="width: 1440px; background: #121214; padding-bottom: 8px; position: relative; overflow: hidden">
+
+  <!-- ─────────── MASTHEAD ─────────── -->
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 28px 48px 18px 48px">
+    <div class="rise" style="display: flex; align-items: center; gap: 20px">
+      <div class="head" style="font-size: 38px; font-weight: 700; letter-spacing: 0.02em; line-height: 1">BITCOIN HARIAN</div>
+      <div style="width: 1px; height: 26px; background: #33333C"></div>
+      <div class="kicker" style="letter-spacing: 0.3em">Rule-based</div>
+    </div>
+    <div class="rise" style="display: flex; align-items: center; gap: 22px; animation-delay: 0.1s">
+      <div style="display: flex; align-items: center; gap: 9px">
+        <div class="live" style="width: 6px; height: 6px; background: #CCFF00"></div>
+        <div class="num" style="font-size: 11.5px; color: #9A9AA8">07.04 WIB</div>
+      </div>
+      <div class="num" style="background: #CCFF00; color: #121214; font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; padding: 7px 16px; clip-path: polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)">EDISI 07.09.2026</div>
+    </div>
+  </div>
+  <div class="rule" style="height: 2px; background: linear-gradient(90deg, #00F0FF 0%, #BD00FF 46%, #FF007A 72%, #CCFF00 100%); margin: 0 48px"></div>
+
+  <!-- ─────────── HERO: SKOR + HARGA ─────────── -->
+  <div style="position: relative">
+    <div class="bloom" style="position: absolute; left: -80px; top: -80px; width: 940px; height: 600px; pointer-events: none; background: radial-gradient(ellipse at 30% 42%, rgba(255, 0, 122, 0.20), rgba(189, 0, 255, 0.09) 40%, rgba(189, 0, 255, 0) 68%)"></div>
+    <div class="bloom" style="position: absolute; right: -140px; top: -40px; width: 640px; height: 460px; pointer-events: none; background: radial-gradient(ellipse at 62% 40%, rgba(0, 240, 255, 0.10), rgba(0, 240, 255, 0) 62%); animation-delay: 0.35s"></div>
+
+    <div style="position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; padding: 40px 48px 44px 48px; align-items: start">
+
+      <div style="grid-column: span 7">
+        <div class="kicker rise" style="animation-delay: 0.16s">Skor komposit hari ini</div>
+
+        <div style="display: flex; align-items: baseline; gap: 28px; margin-top: 16px">
+          <!-- aberasi kromatik: satu-satunya tempat efek ini dipakai -->
+          <div class="rise" style="position: relative; animation-delay: 0.2s">
+            <div aria-hidden="true" style="position: absolute; left: -3px; top: 2px; font-size: 138px; font-weight: 700; line-height: 0.82; letter-spacing: -0.035em; color: #00F0FF; opacity: 0.55">−4</div>
+            <div aria-hidden="true" style="position: absolute; left: 3px; top: -2px; font-size: 138px; font-weight: 700; line-height: 0.82; letter-spacing: -0.035em; color: #BD00FF; opacity: 0.5">−4</div>
+            <div style="position: relative; font-size: 138px; font-weight: 700; line-height: 0.82; letter-spacing: -0.035em; color: #FFFFFF; text-shadow: 0 0 34px rgba(255, 0, 122, 0.6)">−4</div>
+          </div>
+
+          <div class="rise" style="animation-delay: 0.28s">
+            <div class="head" style="font-size: 32px; font-weight: 600; line-height: 1; color: #FF007A; text-shadow: 0 0 18px rgba(255, 0, 122, 0.45)">NETRAL</div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 14px">
+              <svg width="11" height="12" viewBox="0 0 11 12" fill="none">
+                <path d="M5.5 1V11M5.5 11L1.5 7M5.5 11L9.5 7" stroke="#FF007A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              <div class="num" style="font-size: 13px; color: #FF007A">27 poin dari kemarin</div>
+            </div>
+            <div class="num" style="font-size: 11px; color: #6B6B78; margin-top: 8px">skala −100 … +100</div>
+          </div>
+        </div>
+
+        <!-- diverging track -->
+        <div class="rise" style="margin-top: 36px; width: 600px; animation-delay: 0.36s">
+          <div style="position: relative; height: 12px; background: #1B1B20">
+            <div class="barR" style="position: absolute; left: 0; top: 0; width: 30%; height: 100%; background: linear-gradient(90deg, #FF007A, rgba(255, 0, 122, 0.25)); animation-delay: 0.5s"></div>
+            <div class="barL" style="position: absolute; left: 70%; top: 0; width: 30%; height: 100%; background: linear-gradient(90deg, rgba(0, 240, 255, 0.25), #00F0FF); animation-delay: 0.5s"></div>
+            <div style="position: absolute; left: 50%; top: -6px; width: 1px; height: 24px; background: #4A4A56"></div>
+            <div class="drop" style="position: absolute; left: 48%; top: -8px; width: 3px; height: 28px; background: #FFFFFF; box-shadow: 0 0 12px 2px rgba(255, 0, 122, 0.9); animation-delay: 0.95s"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 10px">
+            <div class="num" style="font-size: 10px; color: #6B6B78">−100</div>
+            <div class="num" style="font-size: 10px; color: #6B6B78">−50</div>
+            <div class="num" style="font-size: 10px; color: #9A9AA8">0</div>
+            <div class="num" style="font-size: 10px; color: #6B6B78">+50</div>
+            <div class="num" style="font-size: 10px; color: #6B6B78">+100</div>
+          </div>
+        </div>
+
+        <div class="rise" style="font-size: 18px; font-weight: 300; line-height: 1.55; color: #9A9AA8; margin-top: 30px; max-width: 600px; text-wrap: pretty; animation-delay: 0.44s">
+          Kemarin masih <span style="color: #00F0FF; font-weight: 500">bullish +23</span>. MACD memotong signal line ke bawah dan momentum langsung berbalik dari +25 ke −75 — cukup untuk menghapus keunggulan tren dalam satu hari.
+        </div>
+      </div>
+
+      <!-- harga -->
+      <div class="rise" style="grid-column: span 5; border-left: 1px solid #23232A; padding-left: 32px; animation-delay: 0.3s">
+        <div class="kicker">Harga penutupan · BTCUSDT</div>
+        <div class="num" style="font-size: 46px; font-weight: 700; letter-spacing: -0.03em; margin-top: 16px; line-height: 1">US$79.112</div>
+
+        <div style="display: flex; gap: 40px; margin-top: 26px">
+          <div>
+            <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.18em">1 hari</div>
+            <div class="num" style="font-size: 19px; font-weight: 500; color: #FF007A; margin-top: 7px">−1,53%</div>
+          </div>
+          <div>
+            <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.18em">7 hari</div>
+            <div class="num" style="font-size: 19px; font-weight: 500; color: #00F0FF; margin-top: 7px">+0,68%</div>
+          </div>
+          <div>
+            <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.18em">30 hari</div>
+            <div class="num" style="font-size: 19px; font-weight: 500; color: #00F0FF; margin-top: 7px">+21,78%</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 28px">
+          <svg width="452" height="128" viewBox="0 0 452 128" style="display: block; overflow: visible">
+            <defs>
+              <linearGradient id="priceWash" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.22"></stop>
+                <stop offset="100%" stop-color="#00F0FF" stop-opacity="0"></stop>
+              </linearGradient>
+              <filter id="glowPrice" x="-10%" y="-40%" width="120%" height="180%">
+                <feGaussianBlur stdDeviation="3" result="b"></feGaussianBlur>
+                <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+              </filter>
+            </defs>
+            <path class="fade" d="{{ priceArea }}" fill="url(#priceWash)" style="animation-delay: 1.1s"></path>
+            <path class="draw" d="{{ priceLine }}" fill="none" stroke="#00F0FF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" filter="url(#glowPrice)" style="animation-duration: 1.5s; animation-delay: 0.6s"></path>
+            <circle class="fade" cx="{{ priceEndX }}" cy="{{ priceEndY }}" r="4.5" fill="#00F0FF" stroke="#121214" stroke-width="2" style="animation-delay: 1.6s"></circle>
+          </svg>
+          <div style="display: flex; justify-content: space-between; margin-top: 9px">
+            <div class="num" style="font-size: 10px; color: #6B6B78">{{ priceFirstLabel }}</div>
+            <div class="num" style="font-size: 10px; color: #6B6B78">Rentang {{ rangeLabel }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── CHART: SKOR HISTORIS ─────────── -->
+  <div style="background: #0C0C0E; border-top: 1px solid #23232A; border-bottom: 1px solid #23232A; padding: 30px 48px 36px 48px; position: relative">
+    <!-- kurung sudut HUD -->
+    <div style="position: absolute; left: 20px; top: 16px; width: 18px; height: 18px; border-left: 2px solid #CCFF00; border-top: 2px solid #CCFF00; opacity: 0.7"></div>
+    <div style="position: absolute; right: 20px; bottom: 16px; width: 18px; height: 18px; border-right: 2px solid #CCFF00; border-bottom: 2px solid #CCFF00; opacity: 0.7"></div>
+
+    <div style="display: flex; align-items: flex-end; justify-content: space-between">
+      <div>
+        <div class="kicker">Riwayat skor komposit</div>
+        <div class="head" style="font-size: 22px; font-weight: 600; margin-top: 9px; line-height: 1">PERJALANAN {{ rangeLabelUpper }} TERAKHIR</div>
+      </div>
+      <div style="display: flex; border: 1px solid #33333C">
+        <div class="seg" onClick="{{ set30 }}" style="cursor: pointer; padding: 10px 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; background: {{ bg30 }}; color: {{ fg30 }}">30 HARI</div>
+        <div style="width: 1px; background: #33333C"></div>
+        <div class="seg" onClick="{{ set90 }}" style="cursor: pointer; padding: 10px 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; background: {{ bg90 }}; color: {{ fg90 }}">90 HARI</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px; display: flex; align-items: flex-start">
+      <svg width="1244" height="290" viewBox="0 0 1244 290" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" style="display: block; cursor: crosshair">
+        <defs>
+          <clipPath id="clipUp"><rect x="0" y="0" width="1244" height="171.3"></rect></clipPath>
+          <clipPath id="clipDown"><rect x="0" y="171.3" width="1244" height="118.7"></rect></clipPath>
+          <!-- garis berganti warna tepat di sumbu nol: cyan di atas, magenta di bawah -->
+          <linearGradient id="lineGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="290">
+            <stop offset="0" stop-color="#00F0FF"></stop>
+            <stop offset="0.5907" stop-color="#00F0FF"></stop>
+            <stop offset="0.5907" stop-color="#FF007A"></stop>
+            <stop offset="1" stop-color="#FF007A"></stop>
+          </linearGradient>
+          <filter id="glowLine" x="-5%" y="-25%" width="110%" height="150%">
+            <feGaussianBlur stdDeviation="3.5" result="b"></feGaussianBlur>
+            <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+          </filter>
+        </defs>
+
+        <sc-if value="{{ bands }}" hint-placeholder-val="{{ true }}">
+          <g>
+            <line x1="0" y1="60.4" x2="1244" y2="60.4" stroke="#1C1C22" stroke-width="1"></line>
+            <line x1="0" y1="126.9" x2="1244" y2="126.9" stroke="#1C1C22" stroke-width="1"></line>
+            <line x1="0" y1="215.6" x2="1244" y2="215.6" stroke="#1C1C22" stroke-width="1"></line>
+          </g>
+        </sc-if>
+
+        <path class="fade" d="{{ scoreArea }}" fill="#00F0FF" fill-opacity="0.12" clip-path="url(#clipUp)" style="animation-delay: 1.5s; animation-duration: 1.3s"></path>
+        <path class="fade" d="{{ scoreArea }}" fill="#FF007A" fill-opacity="0.12" clip-path="url(#clipDown)" style="animation-delay: 1.5s; animation-duration: 1.3s"></path>
+
+        <line x1="0" y1="171.3" x2="1244" y2="171.3" stroke="#4A4A56" stroke-width="1"></line>
+
+        <path class="draw" d="{{ scoreLine }}" fill="none" stroke="url(#lineGrad)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" filter="url(#glowLine)"></path>
+
+        <g class="fade" style="animation-delay: 2s">
+          <circle cx="{{ peakX }}" cy="{{ peakY }}" r="4" fill="#00F0FF" stroke="#0C0C0E" stroke-width="2"></circle>
+          <text x="{{ peakLabelX }}" y="{{ peakLabelY }}" fill="#9A9AA8" font-family="JetBrains Mono, monospace" font-size="11">+61 tertinggi</text>
+          <circle cx="1244" cy="180.1" r="5" fill="#FF007A" stroke="#0C0C0E" stroke-width="2"></circle>
+        </g>
+
+        <sc-if value="{{ hovering }}" hint-placeholder-val="{{ true }}">
+          <g>
+            <line x1="{{ hx }}" y1="16" x2="{{ hx }}" y2="260" stroke="#CCFF00" stroke-width="1" stroke-opacity="0.55"></line>
+            <circle cx="{{ hx }}" cy="{{ hy }}" r="4.5" fill="#FFFFFF" stroke="#0C0C0E" stroke-width="2"></circle>
+            <g transform="translate({{ tipX }}, {{ tipY }})">
+              <rect x="0" y="0" width="152" height="56" fill="#17171B" stroke="#33333C" stroke-width="1"></rect>
+              <rect x="0" y="0" width="3" height="56" fill="{{ tipColor }}"></rect>
+              <text x="14" y="22" fill="#6B6B78" font-family="JetBrains Mono, monospace" font-size="10.5">{{ tipDate }}</text>
+              <text x="14" y="43" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="14" font-weight="500">{{ tipScore }}</text>
+              <text x="88" y="43" fill="{{ tipColor }}" font-family="JetBrains Mono, monospace" font-size="10.5">{{ tipLabel }}</text>
+            </g>
+          </g>
+        </sc-if>
+      </svg>
+
+      <sc-if value="{{ bands }}" hint-placeholder-val="{{ true }}">
+        <div class="fade" style="width: 132px; padding-left: 18px; position: relative; height: 290px; animation-delay: 1.9s">
+          <div class="num" style="position: absolute; top: 32px; font-size: 9.5px; letter-spacing: 0.14em; color: #00F0FF">BULLISH KUAT</div>
+          <div class="num" style="position: absolute; top: 88px; font-size: 9.5px; letter-spacing: 0.14em; color: #00F0FF; opacity: 0.6">BULLISH</div>
+          <div class="num" style="position: absolute; top: 165px; font-size: 9.5px; letter-spacing: 0.14em; color: #6B6B78">NETRAL</div>
+          <div class="num" style="position: absolute; top: 232px; font-size: 9.5px; letter-spacing: 0.14em; color: #FF007A; opacity: 0.75">BEARISH</div>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; width: 1244px; margin-top: 11px">
+      <sc-for list="{{ xLabels }}" as="lab" hint-placeholder-count="5">
+        <div class="num" style="font-size: 10px; color: #6B6B78">{{ lab }}</div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ─────────── KATEGORI + SINYAL ─────────── -->
+  <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; padding: 32px 48px 34px 48px">
+
+    <div style="grid-column: span 5">
+      <div class="kicker">Skor per kategori</div>
+      <div class="head" style="font-size: 22px; font-weight: 600; margin-top: 9px; line-height: 1">DARI MANA ANGKANYA DATANG</div>
+
+      <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 26px">
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <div style="font-size: 14px; font-weight: 500">Tren <span class="num" style="color: #6B6B78; font-size: 10.5px; font-weight: 400">bobot 0,35</span></div>
+            <div class="num" style="font-size: 15px; font-weight: 500; color: #00F0FF">+70</div>
+          </div>
+          <div style="position: relative; height: 18px; margin-top: 9px; background: #1B1B20">
+            <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #4A4A56"></div>
+            <div class="barL" style="position: absolute; left: 50%; top: 0; height: 18px; width: 35%; background: #00F0FF; box-shadow: 0 0 14px rgba(0, 240, 255, 0.45); clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%); animation-delay: 0.7s"></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <div style="font-size: 14px; font-weight: 500">Momentum <span class="num" style="color: #6B6B78; font-size: 10.5px; font-weight: 400">bobot 0,25</span></div>
+            <div class="num" style="font-size: 15px; font-weight: 500; color: #FF007A">−75</div>
+          </div>
+          <div style="position: relative; height: 18px; margin-top: 9px; background: #1B1B20">
+            <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #4A4A56"></div>
+            <div class="barR" style="position: absolute; right: 50%; top: 0; height: 18px; width: 37.5%; background: #FF007A; box-shadow: 0 0 14px rgba(255, 0, 122, 0.45); clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%); animation-delay: 0.79s"></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <div style="font-size: 14px; font-weight: 500">Sentimen <span class="num" style="color: #6B6B78; font-size: 10.5px; font-weight: 400">bobot 0,25</span></div>
+            <div class="num" style="font-size: 15px; font-weight: 500; color: #FF007A">−38</div>
+          </div>
+          <div style="position: relative; height: 18px; margin-top: 9px; background: #1B1B20">
+            <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #4A4A56"></div>
+            <div class="barR" style="position: absolute; right: 50%; top: 0; height: 18px; width: 19%; background: #FF007A; box-shadow: 0 0 14px rgba(255, 0, 122, 0.4); clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%); animation-delay: 0.88s"></div>
+          </div>
+        </div>
+
+        <div style="opacity: 0.45">
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <div style="font-size: 14px; color: #9A9AA8">Volatilitas <span class="num" style="color: #6B6B78; font-size: 10.5px">bobot 0,15</span></div>
+            <div class="num" style="font-size: 12.5px; color: #6B6B78">tidak aktif</div>
+          </div>
+          <div style="position: relative; height: 18px; margin-top: 9px; background: #1B1B20">
+            <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #4A4A56"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size: 12.5px; font-weight: 300; line-height: 1.65; color: #6B6B78; margin-top: 22px; max-width: 460px; text-wrap: pretty">
+        Volatilitas tidak menyumbang skor hari ini — tidak ada tembusan Bollinger maupun lonjakan volume. Bobot ketiga kategori lain dinormalisasi ulang, bukan dianggap nol.
+      </div>
+    </div>
+
+    <div style="grid-column: span 7; border-left: 1px solid #23232A; padding-left: 32px">
+      <div class="kicker">Sinyal terdeteksi · 5 aktif</div>
+      <div class="head" style="font-size: 22px; font-weight: 600; margin-top: 9px; line-height: 1">ATURAN YANG MENYALA HARI INI</div>
+
+      <div style="display: flex; flex-direction: column; margin-top: 22px">
+
+        <div class="sig-row rise" style="display: flex; gap: 20px; padding: 14px 16px 14px 14px; margin-left: -14px; border-bottom: 1px solid #1C1C22; align-items: baseline; animation-delay: 0.5s">
+          <div class="num" style="width: 48px; flex-shrink: 0; font-size: 15px; font-weight: 500; color: #00F0FF; text-align: right">+40</div>
+          <div>
+            <div style="font-size: 14.5px; font-weight: 500">MA20 di atas MA50</div>
+            <div class="num sig-detail" style="font-size: 11px; color: #6B6B78; margin-top: 6px">MA20 77.982 &gt; MA50 69.731 · struktur tren jangka pendek naik</div>
+          </div>
+          <div class="kicker" style="margin-left: auto; font-size: 9.5px; flex-shrink: 0">Tren</div>
+        </div>
+
+        <div class="sig-row rise" style="display: flex; gap: 20px; padding: 14px 16px 14px 14px; margin-left: -14px; border-bottom: 1px solid #1C1C22; align-items: baseline; animation-delay: 0.57s">
+          <div class="num" style="width: 48px; flex-shrink: 0; font-size: 15px; font-weight: 500; color: #00F0FF; text-align: right">+30</div>
+          <div>
+            <div style="font-size: 14.5px; font-weight: 500">Harga di atas MA50</div>
+            <div class="num sig-detail" style="font-size: 11px; color: #6B6B78; margin-top: 6px">Tutup 79.112 versus MA50 69.731</div>
+          </div>
+          <div class="kicker" style="margin-left: auto; font-size: 9.5px; flex-shrink: 0">Tren</div>
+        </div>
+
+        <div class="sig-row rise" style="display: flex; gap: 20px; padding: 14px 16px 14px 14px; margin-left: -14px; border-bottom: 1px solid #1C1C22; align-items: baseline; animation-delay: 0.64s">
+          <div class="num" style="width: 48px; flex-shrink: 0; font-size: 15px; font-weight: 500; color: #FF007A; text-align: right">−50</div>
+          <div>
+            <div style="font-size: 14.5px; font-weight: 500">MACD cross bearish</div>
+            <div class="num sig-detail" style="font-size: 11px; color: #6B6B78; margin-top: 6px">MACD memotong signal line ke bawah 3 hari lalu</div>
+          </div>
+          <div class="kicker" style="margin-left: auto; font-size: 9.5px; flex-shrink: 0">Momentum</div>
+        </div>
+
+        <div class="sig-row rise" style="display: flex; gap: 20px; padding: 14px 16px 14px 14px; margin-left: -14px; border-bottom: 1px solid #1C1C22; align-items: baseline; animation-delay: 0.71s">
+          <div class="num" style="width: 48px; flex-shrink: 0; font-size: 15px; font-weight: 500; color: #FF007A; text-align: right">−25</div>
+          <div>
+            <div style="font-size: 14.5px; font-weight: 500">RSI tinggi</div>
+            <div class="num sig-detail" style="font-size: 11px; color: #6B6B78; margin-top: 6px">RSI(14) 62,7 mendekati wilayah overbought</div>
+          </div>
+          <div class="kicker" style="margin-left: auto; font-size: 9.5px; flex-shrink: 0">Momentum</div>
+        </div>
+
+        <div class="sig-row rise" style="display: flex; gap: 20px; padding: 14px 16px 14px 14px; margin-left: -14px; align-items: baseline; animation-delay: 0.78s">
+          <div class="num" style="width: 48px; flex-shrink: 0; font-size: 15px; font-weight: 500; color: #FF007A; text-align: right">−38</div>
+          <div>
+            <div style="font-size: 14.5px; font-weight: 500">Sentimen pasar: Greed</div>
+            <div class="num sig-detail" style="font-size: 11px; color: #6B6B78; margin-top: 6px">Fear &amp; Greed Index 69, dibaca contrarian</div>
+          </div>
+          <div class="kicker" style="margin-left: auto; font-size: 9.5px; flex-shrink: 0">Sentimen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── STRIP INDIKATOR ─────────── -->
+  <div style="background: #0C0C0E; border-top: 1px solid #23232A; border-bottom: 1px solid #23232A; padding: 26px 48px 30px 48px">
+    <div class="kicker" style="margin-bottom: 22px">Indikator mentah · 07 September 2026</div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px">
+
+      <div>
+        <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.16em">RSI (14)</div>
+        <div class="num" style="font-size: 27px; font-weight: 500; margin-top: 9px">62,7</div>
+        <div style="position: relative; height: 4px; background: #1B1B20; margin-top: 14px">
+          <div style="position: absolute; left: 30%; top: -3px; width: 1px; height: 10px; background: #33333C"></div>
+          <div style="position: absolute; left: 70%; top: -3px; width: 1px; height: 10px; background: #33333C"></div>
+          <div class="drop" style="position: absolute; left: 62.7%; top: -4px; width: 2px; height: 12px; background: #FF007A; box-shadow: 0 0 8px rgba(255, 0, 122, 0.8); animation-delay: 1.1s"></div>
+        </div>
+        <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 11px">oversold 30 · overbought 70</div>
+      </div>
+
+      <div>
+        <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.16em">Fear &amp; Greed</div>
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-top: 9px">
+          <div class="num" style="font-size: 27px; font-weight: 500">69</div>
+          <div style="font-size: 13px; font-weight: 500; color: #FF007A">GREED</div>
+        </div>
+        <div style="position: relative; height: 4px; background: #1B1B20; margin-top: 14px">
+          <div style="position: absolute; left: 25%; top: -3px; width: 1px; height: 10px; background: #33333C"></div>
+          <div style="position: absolute; left: 75%; top: -3px; width: 1px; height: 10px; background: #33333C"></div>
+          <div class="drop" style="position: absolute; left: 69%; top: -4px; width: 2px; height: 12px; background: #FF007A; box-shadow: 0 0 8px rgba(255, 0, 122, 0.8); animation-delay: 1.18s"></div>
+        </div>
+        <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 11px">kemarin 71 · turun 2 poin</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+        <div>
+          <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.16em">MA20</div>
+          <div class="num" style="font-size: 19px; font-weight: 500; margin-top: 9px">77.982</div>
+        </div>
+        <div>
+          <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.16em">MA50</div>
+          <div class="num" style="font-size: 19px; font-weight: 500; margin-top: 9px">69.731</div>
+        </div>
+        <div>
+          <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.16em">MACD hist</div>
+          <div class="num" style="font-size: 19px; font-weight: 500; margin-top: 9px; color: #FF007A">−260</div>
+        </div>
+        <div>
+          <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.16em">%B Bollinger</div>
+          <div class="num" style="font-size: 19px; font-weight: 500; margin-top: 9px">0,61</div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+        <div>
+          <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.16em">Volume</div>
+          <div class="num" style="font-size: 19px; font-weight: 500; margin-top: 9px">0,56×</div>
+        </div>
+        <div>
+          <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.16em">Dominansi BTC</div>
+          <div class="num" style="font-size: 19px; font-weight: 500; margin-top: 9px">58,93%</div>
+        </div>
+        <div>
+          <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.16em">Pita atas</div>
+          <div class="num" style="font-size: 19px; font-weight: 500; margin-top: 9px">83.141</div>
+        </div>
+        <div>
+          <div class="kicker" style="font-size: 9.5px; letter-spacing: 0.16em">Pita bawah</div>
+          <div class="num" style="font-size: 19px; font-weight: 500; margin-top: 9px">72.824</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── TABEL RIWAYAT ─────────── -->
+  <div style="padding: 32px 48px 12px 48px">
+    <div class="kicker">Tujuh hari terakhir</div>
+    <div class="head" style="font-size: 22px; font-weight: 600; margin-top: 9px; line-height: 1">SETIAP ANGKA DI ATAS, PER HARI</div>
+
+    <div style="margin-top: 22px">
+      <div class="kicker" style="display: grid; grid-template-columns: 116px 116px 96px 78px 130px 90px 110px 100px; padding: 0 14px 12px 14px; margin-left: -14px; border-bottom: 1px solid #33333C; font-size: 9.5px">
+        <div>Tanggal</div>
+        <div style="text-align: right">Tutup</div>
+        <div style="text-align: right">Δ 1 hari</div>
+        <div style="text-align: right">Skor</div>
+        <div style="padding-left: 24px">Label</div>
+        <div style="text-align: right">Tren</div>
+        <div style="text-align: right">Momentum</div>
+        <div style="text-align: right">Sentimen</div>
+      </div>
+
+      <div class="num tbl-row rise" style="display: grid; grid-template-columns: 116px 116px 96px 78px 130px 90px 110px 100px; padding: 13px 14px; margin-left: -14px; border-bottom: 1px solid #1C1C22; font-size: 12.5px; background: #17171B; box-shadow: inset 2px 0 0 #CCFF00; animation-delay: 0.6s">
+        <div style="color: #FFFFFF">07 Sep</div>
+        <div style="text-align: right; color: #FFFFFF">79.112</div>
+        <div style="text-align: right; color: #FF007A">−1,53%</div>
+        <div style="text-align: right; color: #FF007A">−4</div>
+        <div style="padding-left: 24px; color: #9A9AA8">netral</div>
+        <div style="text-align: right; color: #00F0FF">+70</div>
+        <div style="text-align: right; color: #FF007A">−75</div>
+        <div style="text-align: right; color: #FF007A">−38</div>
+      </div>
+
+      <div class="num tbl-row rise" style="display: grid; grid-template-columns: 116px 116px 96px 78px 130px 90px 110px 100px; padding: 13px 14px; margin-left: -14px; border-bottom: 1px solid #1C1C22; font-size: 12.5px; animation-delay: 0.66s">
+        <div style="color: #9A9AA8">06 Sep</div>
+        <div style="text-align: right; color: #FFFFFF">80.342</div>
+        <div style="text-align: right; color: #00F0FF">+0,64%</div>
+        <div style="text-align: right; color: #00F0FF">+23</div>
+        <div style="padding-left: 24px; color: #9A9AA8">bullish</div>
+        <div style="text-align: right; color: #00F0FF">+70</div>
+        <div style="text-align: right; color: #00F0FF">+25</div>
+        <div style="text-align: right; color: #FF007A">−46</div>
+      </div>
+
+      <div class="num tbl-row rise" style="display: grid; grid-template-columns: 116px 116px 96px 78px 130px 90px 110px 100px; padding: 13px 14px; margin-left: -14px; border-bottom: 1px solid #1C1C22; font-size: 12.5px; animation-delay: 0.72s">
+        <div style="color: #9A9AA8">05 Sep</div>
+        <div style="text-align: right; color: #FFFFFF">79.832</div>
+        <div style="text-align: right; color: #00F0FF">+0,21%</div>
+        <div style="text-align: right; color: #00F0FF">+23</div>
+        <div style="padding-left: 24px; color: #9A9AA8">bullish</div>
+        <div style="text-align: right; color: #00F0FF">+70</div>
+        <div style="text-align: right; color: #00F0FF">+25</div>
+        <div style="text-align: right; color: #FF007A">−46</div>
+      </div>
+
+      <div class="num tbl-row rise" style="display: grid; grid-template-columns: 116px 116px 96px 78px 130px 90px 110px 100px; padding: 13px 14px; margin-left: -14px; border-bottom: 1px solid #1C1C22; font-size: 12.5px; animation-delay: 0.78s">
+        <div style="color: #9A9AA8">04 Sep</div>
+        <div style="text-align: right; color: #FFFFFF">79.661</div>
+        <div style="text-align: right; color: #FF007A">−1,98%</div>
+        <div style="text-align: right; color: #00F0FF">+22</div>
+        <div style="padding-left: 24px; color: #9A9AA8">bullish</div>
+        <div style="text-align: right; color: #00F0FF">+70</div>
+        <div style="text-align: right; color: #00F0FF">+25</div>
+        <div style="text-align: right; color: #FF007A">−48</div>
+      </div>
+
+      <div class="num tbl-row rise" style="display: grid; grid-template-columns: 116px 116px 96px 78px 130px 90px 110px 100px; padding: 13px 14px; margin-left: -14px; border-bottom: 1px solid #1C1C22; font-size: 12.5px; animation-delay: 0.84s">
+        <div style="color: #9A9AA8">03 Sep</div>
+        <div style="text-align: right; color: #FFFFFF">81.270</div>
+        <div style="text-align: right; color: #00F0FF">+5,08%</div>
+        <div style="text-align: right; color: #00F0FF">+20</div>
+        <div style="padding-left: 24px; color: #9A9AA8">bullish</div>
+        <div style="text-align: right; color: #00F0FF">+70</div>
+        <div style="text-align: right; color: #6B6B78">0</div>
+        <div style="text-align: right; color: #FF007A">−30</div>
+      </div>
+
+      <div class="num tbl-row rise" style="display: grid; grid-template-columns: 116px 116px 96px 78px 130px 90px 110px 100px; padding: 13px 14px; margin-left: -14px; border-bottom: 1px solid #1C1C22; font-size: 12.5px; animation-delay: 0.9s">
+        <div style="color: #9A9AA8">02 Sep</div>
+        <div style="text-align: right; color: #FFFFFF">77.340</div>
+        <div style="text-align: right; color: #FF007A">−0,13%</div>
+        <div style="text-align: right; color: #FF007A">−1</div>
+        <div style="padding-left: 24px; color: #9A9AA8">netral</div>
+        <div style="text-align: right; color: #00F0FF">+70</div>
+        <div style="text-align: right; color: #FF007A">−75</div>
+        <div style="text-align: right; color: #FF007A">−26</div>
+      </div>
+
+      <div class="num tbl-row rise" style="display: grid; grid-template-columns: 116px 116px 96px 78px 130px 90px 110px 100px; padding: 13px 14px; margin-left: -14px; font-size: 12.5px; animation-delay: 0.96s">
+        <div style="color: #9A9AA8">01 Sep</div>
+        <div style="text-align: right; color: #FFFFFF">77.439</div>
+        <div style="text-align: right; color: #FF007A">−0,29%</div>
+        <div style="text-align: right; color: #00F0FF">+18</div>
+        <div style="padding-left: 24px; color: #9A9AA8">netral</div>
+        <div style="text-align: right; color: #00F0FF">+70</div>
+        <div style="text-align: right; color: #6B6B78">0</div>
+        <div style="text-align: right; color: #FF007A">−38</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── FOOTER ─────────── -->
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 26px 48px 32px 48px">
+    <div class="num" style="font-size: 10.5px; color: #6B6B78">BINANCE · COINGECKO · ALTERNATIVE.ME · SCORING v1</div>
+    <div class="num" style="font-size: 10.5px; color: #6B6B78">BUKAN SARAN KEUANGAN</div>
+  </div>
+
+  <!-- scanline halus: tekstur CRT, bukan gradien latar -->
+  <div style="position: absolute; inset: 0; pointer-events: none; opacity: 0.35; background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.028) 0px, rgba(255, 255, 255, 0.028) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 3px)"></div>
+
+  <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.045; mix-blend-mode: overlay">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"></feTurbulence>
+      <feColorMatrix type="saturate" values="0"></feColorMatrix>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grain)"></rect>
+  </svg>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"bands":{"editor":"boolean","default":true,"tsType":"boolean"},"motion":{"editor":"boolean","default":true,"tsType":"boolean"},"$preview":{"width":1440,"height":1880}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { range: 90, hover: null };
+  }
+
+  // Skor komposit harian hasil backfill pipeline (90 hari, sampai 2026-09-07).
+  scores() {
+    return [3,-6,-6,15,5,4,2,2,6,7,-6,2,-4,2,5,16,8,-16,-17,16,14,16,4,3,2,-6,-6,-8,-4,-5,
+            -6,-7,-7,-9,20,18,-7,17,18,16,61,38,59,60,49,50,50,26,26,26,27,11,10,35,34,36,
+            35,36,56,55,55,55,26,28,26,2,6,6,33,49,24,16,10,-1,1,8,7,13,9,8,11,18,14,18,-1,
+            20,22,23,23,-4];
+  }
+
+  closes() {
+    return [61511,63626,63580,64458,65746,66329,65675,64509,62958,63544,64298,63312,64020,
+            62735,61078,59794,60097,60029,59577,60260,58625,60024,61560,62583,63144,63650,
+            64042,63364,62290,63230,64162,63819,63780,62335,65044,64756,63830,63932,64834,
+            64723,65256,66556,66114,65099,64140,64375,65400,63756,63915,63984,64780,62888,
+            62824,63570,63520,64107,64665,64324,64923,64963,64902,63970,63600,63480,63491,
+            63044,63086,62900,64532,64725,69335,73025,78338,77075,77734,78993,78539,79024,
+            80250,77846,78230,77682,78581,77439,77340,81270,79661,79832,80342,79112];
+  }
+
+  // Indeks 0 = 2026-06-10.
+  dateAt(i) {
+    var d = new Date(Date.UTC(2026, 5, 10) + i * 86400000);
+    var bulan = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+    var hari = d.getUTCDate();
+    return (hari < 10 ? '0' : '') + hari + ' ' + bulan[d.getUTCMonth()];
+  }
+
+  sliceStart() {
+    return this.state.range === 30 ? 60 : 0;
+  }
+
+  // Skala skor: domain tetap -40..+70 supaya pita klasifikasi tidak bergeser
+  // saat rentang diganti. Sumbu nol jatuh di 171,3 dari 290 (= 59,07%),
+  // titik yang sama dipakai gradien garis untuk berganti cyan -> magenta.
+  scoreY(v) {
+    return 16 + (70 - v) / 110 * 244;
+  }
+
+  buildPath(vals, w, yf) {
+    var s = '', n = vals.length;
+    for (var i = 0; i < n; i++) {
+      var x = n === 1 ? 0 : (i / (n - 1)) * w;
+      s += (i === 0 ? 'M ' : ' L ') + x.toFixed(1) + ' ' + yf(vals[i]).toFixed(1);
+    }
+    return s;
+  }
+
+  renderVals() {
+    var self = this;
+    var start = this.sliceStart();
+    var scores = this.scores().slice(start);
+    var closes = this.closes().slice(start);
+    var n = scores.length;
+    var W = 1244;
+
+    var scoreLine = this.buildPath(scores, W, function (v) { return self.scoreY(v); });
+    var zero = this.scoreY(0);
+    var scoreArea = scoreLine + ' L ' + W + ' ' + zero.toFixed(1) + ' L 0 ' + zero.toFixed(1) + ' Z';
+
+    var lo = Math.min.apply(null, closes), hi = Math.max.apply(null, closes);
+    var pad = (hi - lo) * 0.12 || 1;
+    lo -= pad; hi += pad;
+    var PW = 452, PT = 10, PH = 104;
+    var priceY = function (v) { return PT + (hi - v) / (hi - lo) * PH; };
+    var priceLine = this.buildPath(closes, PW, priceY);
+    var priceArea = priceLine + ' L ' + PW + ' 128 L 0 128 Z';
+
+    var peak = 0;
+    for (var i = 1; i < n; i++) { if (scores[i] > scores[peak]) { peak = i; } }
+    var peakX = (peak / (n - 1)) * W;
+    var peakY = this.scoreY(scores[peak]);
+
+    var labels = [];
+    for (var k = 0; k < 5; k++) {
+      labels.push(this.dateAt(start + Math.round(k * (n - 1) / 4)));
+    }
+
+    var h = this.state.hover;
+    var hx = 0, hy = 0, tipX = 0, tipDate = '', tipScore = '', tipLabel = '', tipColor = '#6B6B78';
+    if (h !== null && h !== undefined) {
+      hx = (h / (n - 1)) * W;
+      hy = this.scoreY(scores[h]);
+      tipX = Math.max(0, Math.min(W - 152, hx - 76));
+      tipDate = this.dateAt(start + h) + ' 2026';
+      var sv = scores[h];
+      tipScore = (sv > 0 ? '+' : sv < 0 ? '−' : '') + Math.abs(sv);
+      if (sv >= 50) { tipLabel = 'bullish kuat'; tipColor = '#00F0FF'; }
+      else if (sv >= 20) { tipLabel = 'bullish'; tipColor = '#00F0FF'; }
+      else if (sv > -20) { tipLabel = 'netral'; tipColor = '#6B6B78'; }
+      else if (sv > -50) { tipLabel = 'bearish'; tipColor = '#FF007A'; }
+      else { tipLabel = 'bearish kuat'; tipColor = '#FF007A'; }
+    }
+
+    var is30 = this.state.range === 30;
+
+    return {
+      rootClass: this.props.motion === false ? 'no-motion' : 'motion-on',
+      bands: this.props.bands !== false,
+      scoreLine: scoreLine,
+      scoreArea: scoreArea,
+      priceLine: priceLine,
+      priceArea: priceArea,
+      priceEndX: PW,
+      priceEndY: priceY(closes[closes.length - 1]),
+      priceFirstLabel: this.dateAt(start) + ' — 07 Sep',
+      peakX: peakX,
+      peakY: peakY,
+      peakLabelX: Math.min(peakX + 12, W - 96),
+      peakLabelY: Math.max(peakY - 12, 24),
+      xLabels: labels,
+      rangeLabel: is30 ? '30 hari' : '90 hari',
+      rangeLabelUpper: is30 ? '30 HARI' : '90 HARI',
+      hovering: h !== null && h !== undefined,
+      hx: hx,
+      hy: hy,
+      tipX: tipX,
+      tipY: Math.max(10, hy - 70),
+      tipDate: tipDate,
+      tipScore: tipScore,
+      tipLabel: tipLabel,
+      tipColor: tipColor,
+      bg30: is30 ? '#CCFF00' : 'transparent',
+      fg30: is30 ? '#121214' : '#6B6B78',
+      bg90: is30 ? 'transparent' : '#CCFF00',
+      fg90: is30 ? '#6B6B78' : '#121214',
+      set30: function () { self.setState({ range: 30, hover: null }); },
+      set90: function () { self.setState({ range: 90, hover: null }); },
+      onMove: function (e) {
+        var box = e.currentTarget.getBoundingClientRect();
+        var rel = (e.clientX - box.left) / box.width;
+        var idx = Math.round(rel * (n - 1));
+        if (idx < 0) { idx = 0; }
+        if (idx > n - 1) { idx = n - 1; }
+        self.setState({ hover: idx });
+      },
+      onLeave: function () { self.setState({ hover: null }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

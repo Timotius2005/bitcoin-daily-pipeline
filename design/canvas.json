@@ -1,0 +1,31 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 1880, "title": "Dashboard — desktop", "is_interactive": true },
+    { "file": "Mobile.dc.html", "x": 1560, "y": 0, "w": 390, "h": 1320, "title": "Dashboard — ponsel" },
+    { "file": "Sistem.dc.html", "x": 0, "y": 2000, "w": 1040, "h": 780, "title": "Sistem desain — token" }
+  ],
+  "annotations": [
+    {
+      "id": "arah-voltage",
+      "x": 0,
+      "y": -210,
+      "w": 660,
+      "text": "Arah: \"Voltage\" — stage-rig HUD di atas matte black #121214.\n\nTipografi ikut ganti: Chakra Petch (angular, techwear) untuk judul dan angka besar, JetBrains Mono untuk semua angka tabel dan sumbu. Serif koran dari versi kemarin sudah tidak nyambung dengan palet ini.\n\nSudut dipotong menyudut, bukan dibulatkan — bahasa bentuk HUD, sekaligus menghindari pola kartu-membulat yang generik."
+    },
+    {
+      "id": "peran-warna",
+      "x": 720,
+      "y": -210,
+      "w": 520,
+      "text": "Lima warna, lima peran yang tidak boleh tertukar:\n\nCyan = bullish. Magenta = bearish. Volt = keadaan antarmuka saja (tombol aktif, denyut live, crosshair). Ungu = atmosfer saja (pendar, ghost aberasi). Putih = teks.\n\nKalau volt atau ungu muncul sebagai warna data, pembacaan grafiknya rusak — itu sebabnya keduanya dikunci di luar plot."
+    },
+    {
+      "id": "efek",
+      "x": 1600,
+      "y": 1420,
+      "w": 350,
+      "text": "Efek yang dipakai, masing-masing sekali dan pada tempatnya:\n\n· Aberasi kromatik cyan/ungu hanya pada angka hero\n· Glow neon hanya pada garis grafik dan mark kecil\n· Garis grafik berganti cyan→magenta tepat di sumbu nol\n· Scanline CRT 2,8% + butiran film 4,5%\n· Kurung sudut volt di panel grafik\n\nGridline tetap garis rambut redup tanpa glow — kalau ikut menyala, angka jadi tidak terbaca."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

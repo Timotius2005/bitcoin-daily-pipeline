@@ -1,0 +1,120 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-08-19",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 69334.79,
+    "open": 64725.42,
+    "high": 70000.0,
+    "low": 64166.0,
+    "change_1d_pct": 7.12,
+    "change_7d_pct": 9.22,
+    "change_30d_pct": 6.25
+  },
+  "indicators": {
+    "rsi14": 73.47,
+    "ma20": 64142.35,
+    "ma50": 64026.47,
+    "macd_line": 373.23,
+    "macd_signal": 3.59,
+    "macd_hist": 369.64,
+    "bb_upper": 66924.47,
+    "bb_middle": 64142.35,
+    "bb_lower": 61360.23,
+    "bb_percent_b": 1.433,
+    "volume": 29054.3,
+    "volume_ma20": 12069.98,
+    "volume_ratio": 2.41
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 46,
+      "classification": "Fear",
+      "date": "2026-08-19",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 40,
+      "label": "MA20 di atas MA50",
+      "detail": "MA20 64,142 > MA50 64,026 - struktur tren jangka pendek naik"
+    },
+    {
+      "id": "price_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 30,
+      "label": "Harga di atas MA50",
+      "detail": "Close 69,335 vs MA50 64,026"
+    },
+    {
+      "id": "rsi_overbought",
+      "category": "momentum",
+      "direction": "bearish",
+      "score": -50,
+      "label": "RSI overbought",
+      "detail": "RSI(14) 73.5 di atas 70"
+    },
+    {
+      "id": "macd_bullish_cross",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 50,
+      "label": "MACD cross bullish",
+      "detail": "MACD memotong signal line ke atas 1 hari lalu"
+    },
+    {
+      "id": "bb_break_atas",
+      "category": "volatility",
+      "direction": "bearish",
+      "score": -60,
+      "label": "Harga menembus upper Bollinger Band",
+      "detail": "Close 69,335 di atas upper band 66,924"
+    },
+    {
+      "id": "volume_spike_naik",
+      "category": "volatility",
+      "direction": "bullish",
+      "score": 40,
+      "label": "Lonjakan volume pada candle hijau",
+      "detail": "Volume 2.4x rata-rata 20 hari"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bullish",
+      "score": 8,
+      "label": "Sentimen pasar: Netral",
+      "detail": "Fear & Greed Index 46 (Netral)"
+    }
+  ],
+  "scores": {
+    "composite": 24,
+    "label": "bullish",
+    "by_category": {
+      "trend": 70,
+      "momentum": 0,
+      "volatility": -20,
+      "sentiment": 8
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25,
+      "volatility": 0.15
+    }
+  },
+  "meta": {
+    "candles_used": 141,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

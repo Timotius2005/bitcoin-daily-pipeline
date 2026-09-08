@@ -1,0 +1,120 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-08-21",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 78338.03,
+    "open": 73027.02,
+    "high": 79500.0,
+    "low": 73027.02,
+    "change_1d_pct": 7.28,
+    "change_7d_pct": 24.26,
+    "change_30d_pct": 18.49
+  },
+  "indicators": {
+    "rsi14": 85.95,
+    "ma20": 65424.93,
+    "ma50": 64622.06,
+    "macd_line": 1914.71,
+    "macd_signal": 546.25,
+    "macd_hist": 1368.45,
+    "bb_upper": 72947.03,
+    "bb_middle": 65424.93,
+    "bb_lower": 57902.84,
+    "bb_percent_b": 1.358,
+    "volume": 44339.57,
+    "volume_ma20": 14680.26,
+    "volume_ratio": 3.02
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 72,
+      "classification": "Greed",
+      "date": "2026-08-21",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 40,
+      "label": "MA20 di atas MA50",
+      "detail": "MA20 65,425 > MA50 64,622 - struktur tren jangka pendek naik"
+    },
+    {
+      "id": "price_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 30,
+      "label": "Harga di atas MA50",
+      "detail": "Close 78,338 vs MA50 64,622"
+    },
+    {
+      "id": "rsi_overbought",
+      "category": "momentum",
+      "direction": "bearish",
+      "score": -50,
+      "label": "RSI overbought",
+      "detail": "RSI(14) 85.9 di atas 70"
+    },
+    {
+      "id": "macd_bullish_cross",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 50,
+      "label": "MACD cross bullish",
+      "detail": "MACD memotong signal line ke atas 3 hari lalu"
+    },
+    {
+      "id": "bb_break_atas",
+      "category": "volatility",
+      "direction": "bearish",
+      "score": -60,
+      "label": "Harga menembus upper Bollinger Band",
+      "detail": "Close 78,338 di atas upper band 72,947"
+    },
+    {
+      "id": "volume_spike_naik",
+      "category": "volatility",
+      "direction": "bullish",
+      "score": 40,
+      "label": "Lonjakan volume pada candle hijau",
+      "detail": "Volume 3.0x rata-rata 20 hari"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bearish",
+      "score": -44,
+      "label": "Sentimen pasar: Greed",
+      "detail": "Fear & Greed Index 72 (Greed)"
+    }
+  ],
+  "scores": {
+    "composite": 10,
+    "label": "netral",
+    "by_category": {
+      "trend": 70,
+      "momentum": 0,
+      "volatility": -20,
+      "sentiment": -44
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25,
+      "volatility": 0.15
+    }
+  },
+  "meta": {
+    "candles_used": 143,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

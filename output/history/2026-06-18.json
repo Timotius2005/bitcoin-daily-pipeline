@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-06-18",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 62958.01,
+    "open": 64509.4,
+    "high": 64806.0,
+    "low": 62272.07,
+    "change_1d_pct": -2.4,
+    "change_7d_pct": -1.05,
+    "change_30d_pct": -18.06
+  },
+  "indicators": {
+    "rsi14": 34.97,
+    "ma20": 65111.95,
+    "ma50": 72997.72,
+    "macd_line": -2420.03,
+    "macd_signal": -2904.77,
+    "macd_hist": 484.74,
+    "bb_upper": 72504.69,
+    "bb_middle": 65111.95,
+    "bb_lower": 57719.2,
+    "bb_percent_b": 0.354,
+    "volume": 16935.6,
+    "volume_ma20": 21645.39,
+    "volume_ratio": 0.78
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 15,
+      "classification": "Extreme Fear",
+      "date": "2026-06-18",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -40,
+      "label": "MA20 di bawah MA50",
+      "detail": "MA20 65,112 < MA50 72,998 - struktur tren jangka pendek turun"
+    },
+    {
+      "id": "price_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -30,
+      "label": "Harga di bawah MA50",
+      "detail": "Close 62,958 vs MA50 72,998"
+    },
+    {
+      "id": "rsi_lemah",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "RSI lemah",
+      "detail": "RSI(14) 35.0 mendekati wilayah oversold"
+    },
+    {
+      "id": "macd_hist_positif",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "Histogram MACD positif",
+      "detail": "Histogram 484.7 - momentum masih di sisi naik"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bullish",
+      "score": 70,
+      "label": "Sentimen pasar: Extreme Fear",
+      "detail": "Fear & Greed Index 15 (Extreme Fear)"
+    }
+  ],
+  "scores": {
+    "composite": 6,
+    "label": "netral",
+    "by_category": {
+      "trend": -70,
+      "momentum": 50,
+      "sentiment": 70
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25
+    }
+  },
+  "meta": {
+    "candles_used": 79,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

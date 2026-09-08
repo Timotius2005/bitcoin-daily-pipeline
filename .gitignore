@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+output/raw.json
+
+# Artefak build kanvas desain (2,5 MB, bisa dibuat ulang dari *.dc.html)
+design/bitcoin-dashboard.html

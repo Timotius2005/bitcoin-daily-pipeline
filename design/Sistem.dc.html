@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap">
+  <style>
+    body {
+      margin: 0;
+      background: #121214;
+      color: #FFFFFF;
+      font-family: "Chakra Petch", "Bai Jamjuree", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #00F0FF; text-decoration: none; }
+    a:hover { color: #CCFF00; }
+    .kicker {
+      font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #6B6B78;
+    }
+    .num { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-variant-numeric: tabular-nums; }
+    .head { font-weight: 600; letter-spacing: 0.01em; text-transform: uppercase; }
+    .cell { border: 1px solid #23232A; padding: 16px; }
+  </style>
+</helmet>
+
+<div style="width: 1040px; background: #121214; padding: 30px 34px 34px 34px; box-sizing: border-box; position: relative; overflow: hidden">
+
+  <div style="display: flex; align-items: center; gap: 18px">
+    <div class="head" style="font-size: 24px; font-weight: 700; letter-spacing: 0.02em">SISTEM DESAIN</div>
+    <div style="flex: 1; height: 2px; background: linear-gradient(90deg, #00F0FF 0%, #BD00FF 46%, #FF007A 74%, #CCFF00 100%)"></div>
+  </div>
+  <div class="num" style="font-size: 11px; color: #6B6B78; margin-top: 10px">Token untuk implementasi Streamlit — nilai di sini yang dipakai, bukan tebakan dari tangkapan layar</div>
+
+  <!-- WARNA -->
+  <div class="kicker" style="margin-top: 26px">01 · Peran warna</div>
+
+  <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 14px">
+    <div class="cell">
+      <div style="height: 46px; background: #00F0FF; box-shadow: 0 0 18px rgba(0, 240, 255, 0.4)"></div>
+      <div class="num" style="font-size: 12px; font-weight: 500; margin-top: 12px">#00F0FF</div>
+      <div style="font-size: 12px; color: #9A9AA8; margin-top: 6px">Data — bullish</div>
+      <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 6px; line-height: 1.5">Garis di atas nol, bar positif, angka positif</div>
+    </div>
+    <div class="cell">
+      <div style="height: 46px; background: #FF007A; box-shadow: 0 0 18px rgba(255, 0, 122, 0.4)"></div>
+      <div class="num" style="font-size: 12px; font-weight: 500; margin-top: 12px">#FF007A</div>
+      <div style="font-size: 12px; color: #9A9AA8; margin-top: 6px">Data — bearish</div>
+      <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 6px; line-height: 1.5">Garis di bawah nol, bar negatif, angka negatif</div>
+    </div>
+    <div class="cell">
+      <div style="height: 46px; background: #CCFF00; box-shadow: 0 0 18px rgba(204, 255, 0, 0.4)"></div>
+      <div class="num" style="font-size: 12px; font-weight: 500; margin-top: 12px">#CCFF00</div>
+      <div style="font-size: 12px; color: #9A9AA8; margin-top: 6px">Antarmuka saja</div>
+      <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 6px; line-height: 1.5">Tombol aktif, denyut live, kurung HUD, crosshair</div>
+    </div>
+    <div class="cell">
+      <div style="height: 46px; background: #BD00FF; box-shadow: 0 0 18px rgba(189, 0, 255, 0.4)"></div>
+      <div class="num" style="font-size: 12px; font-weight: 500; margin-top: 12px">#BD00FF</div>
+      <div style="font-size: 12px; color: #9A9AA8; margin-top: 6px">Atmosfer saja</div>
+      <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 6px; line-height: 1.5">Pendar latar, ghost aberasi. Tidak pernah jadi warna data</div>
+    </div>
+    <div class="cell">
+      <div style="height: 46px; background: #FFFFFF"></div>
+      <div class="num" style="font-size: 12px; font-weight: 500; margin-top: 12px">#FFFFFF</div>
+      <div style="font-size: 12px; color: #9A9AA8; margin-top: 6px">Teks utama</div>
+      <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 6px; line-height: 1.5">Angka besar, judul, nilai tabel</div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 12px">
+    <div class="cell" style="display: flex; align-items: center; gap: 12px">
+      <div style="width: 34px; height: 34px; background: #121214; border: 1px solid #33333C; flex-shrink: 0"></div>
+      <div>
+        <div class="num" style="font-size: 11.5px">#121214</div>
+        <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 4px">Ground</div>
+      </div>
+    </div>
+    <div class="cell" style="display: flex; align-items: center; gap: 12px">
+      <div style="width: 34px; height: 34px; background: #0C0C0E; border: 1px solid #33333C; flex-shrink: 0"></div>
+      <div>
+        <div class="num" style="font-size: 11.5px">#0C0C0E</div>
+        <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 4px">Panel cekung</div>
+      </div>
+    </div>
+    <div class="cell" style="display: flex; align-items: center; gap: 12px">
+      <div style="width: 34px; height: 34px; background: #17171B; border: 1px solid #33333C; flex-shrink: 0"></div>
+      <div>
+        <div class="num" style="font-size: 11.5px">#17171B</div>
+        <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 4px">Baris hover</div>
+      </div>
+    </div>
+    <div class="cell" style="display: flex; align-items: center; gap: 12px">
+      <div style="width: 34px; height: 34px; background: #23232A; flex-shrink: 0"></div>
+      <div>
+        <div class="num" style="font-size: 11.5px">#23232A</div>
+        <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 4px">Garis rambut</div>
+      </div>
+    </div>
+    <div class="cell" style="display: flex; align-items: center; gap: 12px">
+      <div style="display: flex; flex-shrink: 0">
+        <div style="width: 17px; height: 34px; background: #9A9AA8"></div>
+        <div style="width: 17px; height: 34px; background: #6B6B78"></div>
+      </div>
+      <div>
+        <div class="num" style="font-size: 11.5px">#9A9AA8 / #6B6B78</div>
+        <div class="num" style="font-size: 9.5px; color: #6B6B78; margin-top: 4px">Teks 2 / 3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPOGRAFI -->
+  <div class="kicker" style="margin-top: 30px">02 · Tipografi</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px">
+    <div class="cell">
+      <div class="num" style="font-size: 10px; color: #6B6B78; letter-spacing: 0.12em">CHAKRA PETCH — JUDUL, TEKS, ANGKA HERO</div>
+      <div style="font-size: 44px; font-weight: 700; letter-spacing: -0.02em; margin-top: 12px; line-height: 1">−4 NETRAL</div>
+      <div style="font-size: 15px; font-weight: 300; color: #9A9AA8; margin-top: 12px; line-height: 1.5">Berat 300 untuk paragraf, 500 untuk label, 600–700 untuk judul dan angka besar.</div>
+    </div>
+    <div class="cell">
+      <div class="num" style="font-size: 10px; color: #6B6B78; letter-spacing: 0.12em">JETBRAINS MONO — SEMUA ANGKA TABEL &amp; SUMBU</div>
+      <div class="num" style="font-size: 26px; font-weight: 500; margin-top: 14px; line-height: 1.4">79.112<br>62,7 · +70 · −75</div>
+      <div class="num" style="font-size: 11px; color: #9A9AA8; margin-top: 12px; line-height: 1.5">tabular-nums wajib di kolom tabel dan label sumbu — bukan di angka hero.</div>
+    </div>
+  </div>
+
+  <!-- MARK -->
+  <div class="kicker" style="margin-top: 30px">03 · Spesifikasi mark</div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 14px">
+    <div class="cell">
+      <svg width="290" height="70" viewBox="0 0 290 70" style="display: block">
+        <defs>
+          <linearGradient id="sysGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="70">
+            <stop offset="0" stop-color="#00F0FF"></stop>
+            <stop offset="0.5" stop-color="#00F0FF"></stop>
+            <stop offset="0.5" stop-color="#FF007A"></stop>
+            <stop offset="1" stop-color="#FF007A"></stop>
+          </linearGradient>
+          <filter id="sysGlow" x="-10%" y="-40%" width="120%" height="180%">
+            <feGaussianBlur stdDeviation="3" result="b"></feGaussianBlur>
+            <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+          </filter>
+          <clipPath id="sysUp"><rect x="0" y="0" width="290" height="35"></rect></clipPath>
+          <clipPath id="sysDown"><rect x="0" y="35" width="290" height="35"></rect></clipPath>
+        </defs>
+        <path d="M 0 22 L 58 12 L 116 30 L 174 52 L 232 44 L 290 58 L 290 35 L 0 35 Z" fill="#00F0FF" fill-opacity="0.12" clip-path="url(#sysUp)"></path>
+        <path d="M 0 22 L 58 12 L 116 30 L 174 52 L 232 44 L 290 58 L 290 35 L 0 35 Z" fill="#FF007A" fill-opacity="0.12" clip-path="url(#sysDown)"></path>
+        <line x1="0" y1="35" x2="290" y2="35" stroke="#4A4A56" stroke-width="1"></line>
+        <path d="M 0 22 L 58 12 L 116 30 L 174 52 L 232 44 L 290 58" fill="none" stroke="url(#sysGrad)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" filter="url(#sysGlow)"></path>
+      </svg>
+      <div class="num" style="font-size: 10px; color: #6B6B78; margin-top: 12px; line-height: 1.6">Garis 2px, berganti warna tepat di sumbu nol. Isi area 12% opasitas — tidak pernah blok pekat. Glow blur 3,5.</div>
+    </div>
+
+    <div class="cell">
+      <div style="position: relative; height: 18px; background: #1B1B20; margin-top: 6px">
+        <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #4A4A56"></div>
+        <div style="position: absolute; left: 50%; top: 0; height: 18px; width: 35%; background: #00F0FF; box-shadow: 0 0 14px rgba(0, 240, 255, 0.45); clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%)"></div>
+      </div>
+      <div style="position: relative; height: 18px; background: #1B1B20; margin-top: 10px">
+        <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #4A4A56"></div>
+        <div style="position: absolute; right: 50%; top: 0; height: 18px; width: 37.5%; background: #FF007A; box-shadow: 0 0 14px rgba(255, 0, 122, 0.45); clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%)"></div>
+      </div>
+      <div class="num" style="font-size: 10px; color: #6B6B78; margin-top: 14px; line-height: 1.6">Bar divergen tinggi 18px, tumbuh dari sumbu nol. Ujung luar dipotong miring 6px — tidak dibulatkan.</div>
+    </div>
+
+    <div class="cell">
+      <div style="display: flex; gap: 8px; align-items: center; margin-top: 4px">
+        <div class="num" style="background: #CCFF00; color: #121214; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; padding: 8px 14px">AKTIF</div>
+        <div class="num" style="border: 1px solid #33333C; color: #6B6B78; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; padding: 8px 14px">MATI</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 9px; margin-top: 16px">
+        <div style="width: 6px; height: 6px; background: #CCFF00; box-shadow: 0 0 8px 1px rgba(204, 255, 0, 0.7)"></div>
+        <div class="num" style="font-size: 11px; color: #9A9AA8">denyut kesegaran data</div>
+      </div>
+      <div class="num" style="font-size: 10px; color: #6B6B78; margin-top: 16px; line-height: 1.6">Volt hanya untuk keadaan antarmuka. Kalau volt muncul di grafik, itu bug.</div>
+    </div>
+  </div>
+
+  <!-- CATATAN -->
+  <div class="cell" style="margin-top: 12px; border-color: #33333C; display: flex; gap: 28px; align-items: flex-start">
+    <div style="flex: 1">
+      <div class="num" style="font-size: 10px; color: #CCFF00; letter-spacing: 0.14em">CATATAN KETERBACAAN</div>
+      <div style="font-size: 12.5px; font-weight: 300; color: #9A9AA8; margin-top: 10px; line-height: 1.6; text-wrap: pretty">
+        Cyan × magenta lolos uji buta warna dengan selisih besar — ΔE 23,0 (deuteranopia), 48,1 (tritanopia), 46,1 (penglihatan normal). Jauh di atas ambang 8.
+      </div>
+    </div>
+    <div style="flex: 1">
+      <div class="num" style="font-size: 10px; color: #CCFF00; letter-spacing: 0.14em">BATAS PEMAKAIAN</div>
+      <div style="font-size: 12.5px; font-weight: 300; color: #9A9AA8; margin-top: 10px; line-height: 1.6; text-wrap: pretty">
+        Kedua neon terlalu terang untuk blok pekat berukuran besar. Dipakai hanya sebagai garis 2px, titik kecil, teks angka, dan isi area maksimal 12% — tidak pernah sebagai bidang penuh.
+      </div>
+    </div>
+  </div>
+
+  <div style="position: absolute; inset: 0; pointer-events: none; opacity: 0.3; background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.026) 0px, rgba(255, 255, 255, 0.026) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 3px)"></div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1040,"height":780}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

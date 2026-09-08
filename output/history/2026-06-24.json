@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-06-24",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 61077.99,
+    "open": 62734.57,
+    "high": 63239.06,
+    "low": 59102.7,
+    "change_1d_pct": -2.64,
+    "change_7d_pct": -5.32,
+    "change_30d_pct": -21.01
+  },
+  "indicators": {
+    "rsi14": 33.34,
+    "ma20": 63373.41,
+    "ma50": 71125.46,
+    "macd_line": -2057.07,
+    "macd_signal": -2291.28,
+    "macd_hist": 234.21,
+    "bb_upper": 66446.11,
+    "bb_middle": 63373.41,
+    "bb_lower": 60300.71,
+    "bb_percent_b": 0.126,
+    "volume": 30678.29,
+    "volume_ma20": 19301.99,
+    "volume_ratio": 1.59
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 17,
+      "classification": "Extreme Fear",
+      "date": "2026-06-24",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -40,
+      "label": "MA20 di bawah MA50",
+      "detail": "MA20 63,373 < MA50 71,125 - struktur tren jangka pendek turun"
+    },
+    {
+      "id": "price_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -30,
+      "label": "Harga di bawah MA50",
+      "detail": "Close 61,078 vs MA50 71,125"
+    },
+    {
+      "id": "rsi_lemah",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "RSI lemah",
+      "detail": "RSI(14) 33.3 mendekati wilayah oversold"
+    },
+    {
+      "id": "macd_hist_positif",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "Histogram MACD positif",
+      "detail": "Histogram 234.2 - momentum masih di sisi naik"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bullish",
+      "score": 66,
+      "label": "Sentimen pasar: Extreme Fear",
+      "detail": "Fear & Greed Index 17 (Extreme Fear)"
+    }
+  ],
+  "scores": {
+    "composite": 5,
+    "label": "netral",
+    "by_category": {
+      "trend": -70,
+      "momentum": 50,
+      "sentiment": 66
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25
+    }
+  },
+  "meta": {
+    "candles_used": 85,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

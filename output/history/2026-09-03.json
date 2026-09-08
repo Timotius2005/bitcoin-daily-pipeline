@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-09-03",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 81270.37,
+    "open": 77340.01,
+    "high": 82300.0,
+    "low": 76968.0,
+    "change_1d_pct": 5.08,
+    "change_7d_pct": 1.27,
+    "change_30d_pct": 26.77
+  },
+  "indicators": {
+    "rsi14": 72.99,
+    "ma20": 74797.21,
+    "ma50": 68498.14,
+    "macd_line": 3485.8,
+    "macd_signal": 3468.38,
+    "macd_hist": 17.43,
+    "bb_upper": 86823.02,
+    "bb_middle": 74797.21,
+    "bb_lower": 62771.4,
+    "bb_percent_b": 0.769,
+    "volume": 19806.42,
+    "volume_ma20": 18168.98,
+    "volume_ratio": 1.09
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 65,
+      "classification": "Greed",
+      "date": "2026-09-03",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 40,
+      "label": "MA20 di atas MA50",
+      "detail": "MA20 74,797 > MA50 68,498 - struktur tren jangka pendek naik"
+    },
+    {
+      "id": "price_above_ma50",
+      "category": "trend",
+      "direction": "bullish",
+      "score": 30,
+      "label": "Harga di atas MA50",
+      "detail": "Close 81,270 vs MA50 68,498"
+    },
+    {
+      "id": "rsi_overbought",
+      "category": "momentum",
+      "direction": "bearish",
+      "score": -50,
+      "label": "RSI overbought",
+      "detail": "RSI(14) 73.0 di atas 70"
+    },
+    {
+      "id": "macd_bullish_cross",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 50,
+      "label": "MACD cross bullish",
+      "detail": "MACD memotong signal line ke atas 0 hari lalu"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bearish",
+      "score": -30,
+      "label": "Sentimen pasar: Greed",
+      "detail": "Fear & Greed Index 65 (Greed)"
+    }
+  ],
+  "scores": {
+    "composite": 20,
+    "label": "bullish",
+    "by_category": {
+      "trend": 70,
+      "momentum": 0,
+      "sentiment": -30
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25
+    }
+  },
+  "meta": {
+    "candles_used": 156,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}

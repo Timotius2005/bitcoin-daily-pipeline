@@ -1,0 +1,78 @@
+name: Daily BTC Analysis
+
+on:
+  schedule:
+    # Cron GitHub Actions selalu UTC. 00:00 UTC = 07:00 WIB.
+    # Catatan: penjadwalan Actions tidak presisi - delay 5-30 menit itu
+    # normal, dan run bisa di-skip saat platform sedang padat. Konsumen
+    # data ini (scheduled task Cowork) karena itu harus mengecek field
+    # generated_at, bukan mengandalkan jam.
+    - cron: "0 0 * * *"
+  workflow_dispatch: # tombol Run workflow manual, untuk tes
+
+# Cegah dua run menabrak satu sama lain saat push ke branch yang sama.
+concurrency:
+  group: daily-analysis
+  cancel-in-progress: false
+
+permissions:
+  contents: write # dibutuhkan untuk commit hasil kembali ke repo
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch data mentah
+        run: python fetch.py --out output/raw.json
+
+      - name: Analisis dan scoring
+        run: python analyze.py --in output/raw.json --out output/latest.json
+
+      - name: Ringkasan hasil
+        # Muncul di halaman Summary run, jadi bisa dicek tanpa buka log.
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d = json.load(open("output/latest.json", encoding="utf-8"))
+          s = d["scores"]
+          print(f"## BTC {d['data_as_of']} - skor {s['composite']:+d} ({s['label']})\n")
+          print(f"Close: ${d['price']['close']:,.0f} "
+                f"({d['price']['change_1d_pct']:+.2f}% 1d)\n")
+          print("| Kategori | Skor |")
+          print("|---|---|")
+          for cat, val in s["by_category"].items():
+              print(f"| {cat} | {val:+d} |")
+          print("\n**Sinyal aktif:**\n")
+          for sig in d["signals"]:
+              print(f"- `{sig['score']:+d}` {sig['label']} - {sig['detail']}")
+          PY
+
+      - name: Commit hasil ke repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add output/latest.json output/history/
+          if git diff --staged --quiet; then
+            echo "Tidak ada perubahan, tidak perlu commit."
+            exit 0
+          fi
+          DATE=$(python -c "import json;print(json.load(open('output/latest.json'))['data_as_of'])")
+          SCORE=$(python -c "import json;print(json.load(open('output/latest.json'))['scores']['composite'])")
+          git commit -m "data: analisis BTC $DATE (skor $SCORE)"
+          # Rebase dulu kalau ada commit lain masuk saat job berjalan.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

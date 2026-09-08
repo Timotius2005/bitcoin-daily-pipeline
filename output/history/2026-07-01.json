@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-09-08T14:44:23+00:00",
+  "data_as_of": "2026-07-01",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 60024.0,
+    "open": 58624.71,
+    "high": 61334.0,
+    "low": 57800.19,
+    "change_1d_pct": 2.39,
+    "change_7d_pct": -1.73,
+    "change_30d_pct": -15.94
+  },
+  "indicators": {
+    "rsi14": 37.24,
+    "ma20": 62532.42,
+    "ma50": 68157.88,
+    "macd_line": -2265.9,
+    "macd_signal": -2298.34,
+    "macd_hist": 32.44,
+    "bb_upper": 67175.39,
+    "bb_middle": 62532.42,
+    "bb_lower": 57889.44,
+    "bb_percent_b": 0.23,
+    "volume": 25093.45,
+    "volume_ma20": 17387.79,
+    "volume_ratio": 1.44
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 11,
+      "classification": "Extreme Fear",
+      "date": "2026-07-01",
+      "value_yesterday": null
+    },
+    "btc_dominance_pct": null,
+    "market_cap_change_24h_pct": null
+  },
+  "signals": [
+    {
+      "id": "ma20_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -40,
+      "label": "MA20 di bawah MA50",
+      "detail": "MA20 62,532 < MA50 68,158 - struktur tren jangka pendek turun"
+    },
+    {
+      "id": "price_below_ma50",
+      "category": "trend",
+      "direction": "bearish",
+      "score": -30,
+      "label": "Harga di bawah MA50",
+      "detail": "Close 60,024 vs MA50 68,158"
+    },
+    {
+      "id": "rsi_lemah",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 25,
+      "label": "RSI lemah",
+      "detail": "RSI(14) 37.2 mendekati wilayah oversold"
+    },
+    {
+      "id": "macd_bullish_cross",
+      "category": "momentum",
+      "direction": "bullish",
+      "score": 50,
+      "label": "MACD cross bullish",
+      "detail": "MACD memotong signal line ke atas 0 hari lalu"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "direction": "bullish",
+      "score": 78,
+      "label": "Sentimen pasar: Extreme Fear",
+      "detail": "Fear & Greed Index 11 (Extreme Fear)"
+    }
+  ],
+  "scores": {
+    "composite": 16,
+    "label": "netral",
+    "by_category": {
+      "trend": -70,
+      "momentum": 75,
+      "sentiment": 78
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25
+    }
+  },
+  "meta": {
+    "candles_used": 92,
+    "fetched_at": "2026-09-08T14:44:23+00:00",
+    "fetch_errors": {},
+    "scoring_version": 1,
+    "backfilled": true
+  }
+}
