@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T14:44:23+00:00",
+  "generated_at": "2026-09-14T16:13:23+00:00",
   "data_as_of": "2026-07-21",
   "symbol": "BTCUSDT",
   "price": {
@@ -12,19 +12,26 @@
     "change_30d_pct": 5.12
   },
   "indicators": {
-    "rsi14": 61.52,
+    "rsi14": 61.51,
     "ma20": 63844.45,
     "ma50": 63151.06,
-    "macd_line": 499.87,
-    "macd_signal": 102.42,
-    "macd_hist": 397.46,
+    "macd_line": 498.48,
+    "macd_signal": 100.37,
+    "macd_hist": 398.11,
     "bb_upper": 66131.81,
     "bb_middle": 63844.45,
     "bb_lower": 61557.09,
     "bb_percent_b": 1.093,
     "volume": 18618.28,
     "volume_ma20": 16098.77,
-    "volume_ratio": 1.16
+    "volume_ratio": 1.16,
+    "atr14": 1836.16,
+    "atr_pct": 2.759,
+    "atr_pct_percentile": 19.2,
+    "adx14": 23.08,
+    "plus_di": 17.78,
+    "minus_di": 24.55,
+    "obv_above_sma20": true
   },
   "sentiment": {
     "fear_greed": {
@@ -40,6 +47,7 @@
     {
       "id": "ma20_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 40,
       "label": "MA20 di atas MA50",
@@ -48,6 +56,7 @@
     {
       "id": "golden_cross",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 30,
       "label": "Golden cross MA20/MA50",
@@ -56,6 +65,7 @@
     {
       "id": "price_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 30,
       "label": "Harga di atas MA50",
@@ -64,6 +74,7 @@
     {
       "id": "rsi_tinggi",
       "category": "momentum",
+      "kind": "score",
       "direction": "bearish",
       "score": -25,
       "label": "RSI tinggi",
@@ -72,22 +83,34 @@
     {
       "id": "macd_hist_positif",
       "category": "momentum",
+      "kind": "score",
       "direction": "bullish",
       "score": 25,
       "label": "Histogram MACD positif",
-      "detail": "Histogram 397.5 - momentum masih di sisi naik"
+      "detail": "Histogram 398.1 - momentum masih di sisi naik"
     },
     {
       "id": "bb_break_atas",
       "category": "volatility",
+      "kind": "score",
       "direction": "bearish",
       "score": -60,
       "label": "Harga menembus upper Bollinger Band",
       "detail": "Close 66,556 di atas upper band 66,132"
     },
     {
+      "id": "obv_konfirmasi_naik",
+      "category": "volatility",
+      "kind": "score",
+      "direction": "bullish",
+      "score": 25,
+      "label": "Volume mengonfirmasi kenaikan",
+      "detail": "OBV di atas rata-rata 20 hari, harga di atas MA20"
+    },
+    {
       "id": "fear_greed",
       "category": "sentiment",
+      "kind": "score",
       "direction": "bullish",
       "score": 50,
       "label": "Sentimen pasar: Fear",
@@ -95,12 +118,12 @@
     }
   ],
   "scores": {
-    "composite": 38,
+    "composite": 42,
     "label": "bullish",
     "by_category": {
       "trend": 100,
       "momentum": 0,
-      "volatility": -60,
+      "volatility": -35,
       "sentiment": 50
     },
     "weights_used": {
@@ -108,13 +131,15 @@
       "momentum": 0.25,
       "sentiment": 0.25,
       "volatility": 0.15
-    }
+    },
+    "adjustments": []
   },
   "meta": {
-    "candles_used": 112,
+    "candles_used": 200,
     "fetched_at": "2026-09-08T14:44:23+00:00",
     "fetch_errors": {},
-    "scoring_version": 1,
-    "backfilled": true
+    "scoring_version": 2,
+    "backfilled": true,
+    "rescored_from_version": 1
   }
 }

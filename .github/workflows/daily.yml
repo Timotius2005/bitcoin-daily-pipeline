@@ -2,12 +2,15 @@ name: Daily BTC Analysis
 
 on:
   schedule:
-    # Cron GitHub Actions selalu UTC. 00:00 UTC = 07:00 WIB.
-    # Catatan: penjadwalan Actions tidak presisi - delay 5-30 menit itu
-    # normal, dan run bisa di-skip saat platform sedang padat. Konsumen
-    # data ini (scheduled task Cowork) karena itu harus mengecek field
-    # generated_at, bukan mengandalkan jam.
-    - cron: "0 0 * * *"
+    # Cron GitHub Actions selalu UTC. 00:37 UTC = 07:37 WIB, 37 menit setelah
+    # candle harian Binance ditutup.
+    #
+    # Sengaja BUKAN menit :00. Awal jam adalah slot tersibuk penjadwal
+    # Actions, dan 00:00 UTC yang tersibuk dari semuanya: dengan "0 0 * * *"
+    # run terjadwal konsisten telat ~4 jam (dijalankan 11:04-11:23 WIB,
+    # 9-14 Sep 2026). Jadwal tetap tidak dijamin presisi, jadi konsumen data
+    # wajib mengecek data_as_of, bukan mengandalkan jam.
+    - cron: "37 0 * * *"
   workflow_dispatch: # tombol Run workflow manual, untuk tes
 
 # Cegah dua run menabrak satu sama lain saat push ke branch yang sama.
@@ -51,14 +54,19 @@ jobs:
           s = d["scores"]
           print(f"## BTC {d['data_as_of']} - skor {s['composite']:+d} ({s['label']})\n")
           print(f"Close: ${d['price']['close']:,.0f} "
-                f"({d['price']['change_1d_pct']:+.2f}% 1d)\n")
+                f"({d['price']['change_1d_pct']:+.2f}% 1d) - "
+                f"scoring v{d['meta']['scoring_version']}\n")
           print("| Kategori | Skor |")
           print("|---|---|")
           for cat, val in s["by_category"].items():
               print(f"| {cat} | {val:+d} |")
+          for adj in s.get("adjustments", []):
+              print(f"\nPenyesuaian {adj['category']}: {adj['before']:+d} -> "
+                    f"{adj['after']:+d} ({adj['reason']})")
           print("\n**Sinyal aktif:**\n")
           for sig in d["signals"]:
-              print(f"- `{sig['score']:+d}` {sig['label']} - {sig['detail']}")
+              nilai = "info" if sig.get("kind") == "info" else f"{sig['score']:+d}"
+              print(f"- `{nilai}` {sig['label']} - {sig['detail']}")
           PY
 
       - name: Commit hasil ke repo

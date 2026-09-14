@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-09T04:08:52+00:00",
+  "generated_at": "2026-09-14T16:13:23+00:00",
   "data_as_of": "2026-09-08",
   "symbol": "BTCUSDT",
   "price": {
@@ -24,7 +24,14 @@
     "bb_percent_b": 0.503,
     "volume": 19235.07,
     "volume_ma20": 18255.78,
-    "volume_ratio": 1.05
+    "volume_ratio": 1.05,
+    "atr14": 2251.05,
+    "atr_pct": 2.869,
+    "atr_pct_percentile": 39.2,
+    "adx14": 47.93,
+    "plus_di": 31.77,
+    "minus_di": 12.99,
+    "obv_above_sma20": false
   },
   "sentiment": {
     "fear_greed": {
@@ -40,6 +47,7 @@
     {
       "id": "ma20_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 40,
       "label": "MA20 di atas MA50",
@@ -48,14 +56,25 @@
     {
       "id": "price_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 30,
       "label": "Harga di atas MA50",
       "detail": "Close 78,456 vs MA50 69,995"
     },
     {
+      "id": "adx_tren_kuat",
+      "category": "trend",
+      "kind": "info",
+      "direction": "neutral",
+      "score": 0,
+      "label": "Tren kuat",
+      "detail": "ADX(14) 47.9 - +DI 31.8 vs -DI 13.0"
+    },
+    {
       "id": "rsi_tinggi",
       "category": "momentum",
+      "kind": "score",
       "direction": "bearish",
       "score": -25,
       "label": "RSI tinggi",
@@ -64,14 +83,25 @@
     {
       "id": "macd_hist_negatif",
       "category": "momentum",
+      "kind": "score",
       "direction": "bearish",
       "score": -25,
       "label": "Histogram MACD negatif",
       "detail": "Histogram -395.0 - momentum masih di sisi turun"
     },
     {
+      "id": "obv_divergensi_bearish",
+      "category": "volatility",
+      "kind": "score",
+      "direction": "bearish",
+      "score": -20,
+      "label": "Kenaikan tanpa dukungan volume",
+      "detail": "Harga di atas MA20 tapi OBV di bawah rata-rata 20 hari"
+    },
+    {
       "id": "fear_greed",
       "category": "sentiment",
+      "kind": "score",
       "direction": "bearish",
       "score": -32,
       "label": "Sentimen pasar: Greed",
@@ -79,23 +109,28 @@
     }
   ],
   "scores": {
-    "composite": 5,
+    "composite": 1,
     "label": "netral",
     "by_category": {
       "trend": 70,
       "momentum": -50,
+      "volatility": -20,
       "sentiment": -32
     },
     "weights_used": {
       "trend": 0.35,
       "momentum": 0.25,
-      "sentiment": 0.25
-    }
+      "sentiment": 0.25,
+      "volatility": 0.15
+    },
+    "adjustments": []
   },
   "meta": {
     "candles_used": 200,
     "fetched_at": "2026-09-09T04:08:51+00:00",
     "fetch_errors": {},
-    "scoring_version": 1
+    "scoring_version": 2,
+    "backfilled": false,
+    "rescored_from_version": 1
   }
 }

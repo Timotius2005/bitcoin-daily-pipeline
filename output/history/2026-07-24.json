@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T14:44:23+00:00",
+  "generated_at": "2026-09-14T16:13:23+00:00",
   "data_as_of": "2026-07-24",
   "symbol": "BTCUSDT",
   "price": {
@@ -15,16 +15,23 @@
     "rsi14": 49.57,
     "ma20": 64247.76,
     "ma50": 63162.34,
-    "macd_line": 477.99,
-    "macd_signal": 315.49,
-    "macd_hist": 162.5,
+    "macd_line": 476.89,
+    "macd_signal": 313.86,
+    "macd_hist": 163.02,
     "bb_upper": 66365.36,
     "bb_middle": 64247.76,
     "bb_lower": 62130.16,
     "bb_percent_b": 0.475,
     "volume": 16821.27,
     "volume_ma20": 16349.94,
-    "volume_ratio": 1.03
+    "volume_ratio": 1.03,
+    "atr14": 1801.28,
+    "atr_pct": 2.808,
+    "atr_pct_percentile": 21.4,
+    "adx14": 23.16,
+    "plus_di": 14.51,
+    "minus_di": 26.98,
+    "obv_above_sma20": false
   },
   "sentiment": {
     "fear_greed": {
@@ -40,6 +47,7 @@
     {
       "id": "ma20_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 40,
       "label": "MA20 di atas MA50",
@@ -48,6 +56,7 @@
     {
       "id": "price_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 30,
       "label": "Harga di atas MA50",
@@ -56,14 +65,25 @@
     {
       "id": "macd_hist_positif",
       "category": "momentum",
+      "kind": "score",
       "direction": "bullish",
       "score": 25,
       "label": "Histogram MACD positif",
-      "detail": "Histogram 162.5 - momentum masih di sisi naik"
+      "detail": "Histogram 163.0 - momentum masih di sisi naik"
+    },
+    {
+      "id": "obv_konfirmasi_turun",
+      "category": "volatility",
+      "kind": "score",
+      "direction": "bearish",
+      "score": -25,
+      "label": "Volume mengonfirmasi penurunan",
+      "detail": "OBV di bawah rata-rata 20 hari, harga di bawah MA20"
     },
     {
       "id": "fear_greed",
       "category": "sentiment",
+      "kind": "score",
       "direction": "bullish",
       "score": 44,
       "label": "Sentimen pasar: Fear",
@@ -71,24 +91,28 @@
     }
   ],
   "scores": {
-    "composite": 49,
+    "composite": 38,
     "label": "bullish",
     "by_category": {
       "trend": 70,
       "momentum": 25,
+      "volatility": -25,
       "sentiment": 44
     },
     "weights_used": {
       "trend": 0.35,
       "momentum": 0.25,
-      "sentiment": 0.25
-    }
+      "sentiment": 0.25,
+      "volatility": 0.15
+    },
+    "adjustments": []
   },
   "meta": {
-    "candles_used": 115,
+    "candles_used": 200,
     "fetched_at": "2026-09-08T14:44:23+00:00",
     "fetch_errors": {},
-    "scoring_version": 1,
-    "backfilled": true
+    "scoring_version": 2,
+    "backfilled": true,
+    "rescored_from_version": 1
   }
 }

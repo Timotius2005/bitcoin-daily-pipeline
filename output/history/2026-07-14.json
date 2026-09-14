@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T14:44:23+00:00",
+  "generated_at": "2026-09-14T16:13:23+00:00",
   "data_as_of": "2026-07-14",
   "symbol": "BTCUSDT",
   "price": {
@@ -12,19 +12,26 @@
     "change_30d_pct": -1.07
   },
   "indicators": {
-    "rsi14": 56.32,
-    "ma20": 62070.43,
+    "rsi14": 56.31,
+    "ma20": 62070.44,
     "ma50": 64401.83,
-    "macd_line": -80.4,
-    "macd_signal": -549.72,
-    "macd_hist": 469.32,
+    "macd_line": -82.78,
+    "macd_signal": -553.22,
+    "macd_hist": 470.44,
     "bb_upper": 65790.32,
-    "bb_middle": 62070.43,
+    "bb_middle": 62070.44,
     "bb_lower": 58350.55,
     "bb_percent_b": 0.9,
     "volume": 20552.41,
     "volume_ma20": 17574.33,
-    "volume_ratio": 1.17
+    "volume_ratio": 1.17,
+    "atr14": 2047.62,
+    "atr_pct": 3.148,
+    "atr_pct_percentile": 30.3,
+    "adx14": 24.21,
+    "plus_di": 15.37,
+    "minus_di": 22.31,
+    "obv_above_sma20": true
   },
   "sentiment": {
     "fear_greed": {
@@ -40,6 +47,7 @@
     {
       "id": "ma20_below_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bearish",
       "score": -40,
       "label": "MA20 di bawah MA50",
@@ -48,6 +56,7 @@
     {
       "id": "price_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 30,
       "label": "Harga di atas MA50",
@@ -56,14 +65,25 @@
     {
       "id": "macd_hist_positif",
       "category": "momentum",
+      "kind": "score",
       "direction": "bullish",
       "score": 25,
       "label": "Histogram MACD positif",
-      "detail": "Histogram 469.3 - momentum masih di sisi naik"
+      "detail": "Histogram 470.4 - momentum masih di sisi naik"
+    },
+    {
+      "id": "obv_konfirmasi_naik",
+      "category": "volatility",
+      "kind": "score",
+      "direction": "bullish",
+      "score": 25,
+      "label": "Volume mengonfirmasi kenaikan",
+      "detail": "OBV di atas rata-rata 20 hari, harga di atas MA20"
     },
     {
       "id": "fear_greed",
       "category": "sentiment",
+      "kind": "score",
       "direction": "bullish",
       "score": 56,
       "label": "Sentimen pasar: Extreme Fear",
@@ -76,19 +96,23 @@
     "by_category": {
       "trend": -10,
       "momentum": 25,
+      "volatility": 25,
       "sentiment": 56
     },
     "weights_used": {
       "trend": 0.35,
       "momentum": 0.25,
-      "sentiment": 0.25
-    }
+      "sentiment": 0.25,
+      "volatility": 0.15
+    },
+    "adjustments": []
   },
   "meta": {
-    "candles_used": 105,
+    "candles_used": 200,
     "fetched_at": "2026-09-08T14:44:23+00:00",
     "fetch_errors": {},
-    "scoring_version": 1,
-    "backfilled": true
+    "scoring_version": 2,
+    "backfilled": true,
+    "rescored_from_version": 1
   }
 }

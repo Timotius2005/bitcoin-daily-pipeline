@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T14:44:23+00:00",
+  "generated_at": "2026-09-14T16:13:23+00:00",
   "data_as_of": "2026-08-31",
   "symbol": "BTCUSDT",
   "price": {
@@ -15,16 +15,23 @@
     "rsi14": 70.81,
     "ma20": 72495.46,
     "ma50": 67619.84,
-    "macd_line": 3777.7,
-    "macd_signal": 3464.5,
-    "macd_hist": 313.2,
+    "macd_line": 3777.65,
+    "macd_signal": 3464.42,
+    "macd_hist": 313.23,
     "bb_upper": 86321.92,
     "bb_middle": 72495.46,
     "bb_lower": 58669.01,
     "bb_percent_b": 0.72,
     "volume": 15303.91,
     "volume_ma20": 17656.66,
-    "volume_ratio": 0.87
+    "volume_ratio": 0.87,
+    "atr14": 2309.95,
+    "atr_pct": 2.94,
+    "atr_pct_percentile": 40.8,
+    "adx14": 43.98,
+    "plus_di": 36.87,
+    "minus_di": 10.31,
+    "obv_above_sma20": true
   },
   "sentiment": {
     "fear_greed": {
@@ -40,6 +47,7 @@
     {
       "id": "ma20_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 40,
       "label": "MA20 di atas MA50",
@@ -48,14 +56,25 @@
     {
       "id": "price_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 30,
       "label": "Harga di atas MA50",
       "detail": "Close 78,581 vs MA50 67,620"
     },
     {
+      "id": "adx_tren_kuat",
+      "category": "trend",
+      "kind": "info",
+      "direction": "neutral",
+      "score": 0,
+      "label": "Tren kuat",
+      "detail": "ADX(14) 44.0 - +DI 36.9 vs -DI 10.3"
+    },
+    {
       "id": "rsi_overbought",
       "category": "momentum",
+      "kind": "score",
       "direction": "bearish",
       "score": -50,
       "label": "RSI overbought",
@@ -64,14 +83,25 @@
     {
       "id": "macd_hist_positif",
       "category": "momentum",
+      "kind": "score",
       "direction": "bullish",
       "score": 25,
       "label": "Histogram MACD positif",
       "detail": "Histogram 313.2 - momentum masih di sisi naik"
     },
     {
+      "id": "obv_konfirmasi_naik",
+      "category": "volatility",
+      "kind": "score",
+      "direction": "bullish",
+      "score": 25,
+      "label": "Volume mengonfirmasi kenaikan",
+      "detail": "OBV di atas rata-rata 20 hari, harga di atas MA20"
+    },
+    {
       "id": "fear_greed",
       "category": "sentiment",
+      "kind": "score",
       "direction": "bearish",
       "score": -24,
       "label": "Sentimen pasar: Greed",
@@ -79,24 +109,28 @@
     }
   ],
   "scores": {
-    "composite": 14,
+    "composite": 16,
     "label": "netral",
     "by_category": {
       "trend": 70,
       "momentum": -25,
+      "volatility": 25,
       "sentiment": -24
     },
     "weights_used": {
       "trend": 0.35,
       "momentum": 0.25,
-      "sentiment": 0.25
-    }
+      "sentiment": 0.25,
+      "volatility": 0.15
+    },
+    "adjustments": []
   },
   "meta": {
-    "candles_used": 153,
+    "candles_used": 200,
     "fetched_at": "2026-09-08T14:44:23+00:00",
     "fetch_errors": {},
-    "scoring_version": 1,
-    "backfilled": true
+    "scoring_version": 2,
+    "backfilled": true,
+    "rescored_from_version": 1
   }
 }

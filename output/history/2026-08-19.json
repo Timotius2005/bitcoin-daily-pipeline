@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T14:44:23+00:00",
+  "generated_at": "2026-09-14T16:13:23+00:00",
   "data_as_of": "2026-08-19",
   "symbol": "BTCUSDT",
   "price": {
@@ -15,16 +15,23 @@
     "rsi14": 73.47,
     "ma20": 64142.35,
     "ma50": 64026.47,
-    "macd_line": 373.23,
-    "macd_signal": 3.59,
-    "macd_hist": 369.64,
+    "macd_line": 373.09,
+    "macd_signal": 3.38,
+    "macd_hist": 369.71,
     "bb_upper": 66924.47,
     "bb_middle": 64142.35,
     "bb_lower": 61360.23,
     "bb_percent_b": 1.433,
     "volume": 29054.3,
     "volume_ma20": 12069.98,
-    "volume_ratio": 2.41
+    "volume_ratio": 2.41,
+    "atr14": 1581.29,
+    "atr_pct": 2.281,
+    "atr_pct_percentile": 6.4,
+    "adx14": 19.1,
+    "plus_di": 36.88,
+    "minus_di": 14.59,
+    "obv_above_sma20": true
   },
   "sentiment": {
     "fear_greed": {
@@ -40,6 +47,7 @@
     {
       "id": "ma20_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 40,
       "label": "MA20 di atas MA50",
@@ -48,14 +56,25 @@
     {
       "id": "price_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 30,
       "label": "Harga di atas MA50",
       "detail": "Close 69,335 vs MA50 64,026"
     },
     {
+      "id": "adx_tren_lemah",
+      "category": "trend",
+      "kind": "info",
+      "direction": "neutral",
+      "score": 0,
+      "label": "Tren lemah, sinyal tren diredam",
+      "detail": "ADX(14) 19.1 di bawah 20 - skor kategori tren dikali 0.5"
+    },
+    {
       "id": "rsi_overbought",
       "category": "momentum",
+      "kind": "score",
       "direction": "bearish",
       "score": -50,
       "label": "RSI overbought",
@@ -64,6 +83,7 @@
     {
       "id": "macd_bullish_cross",
       "category": "momentum",
+      "kind": "score",
       "direction": "bullish",
       "score": 50,
       "label": "MACD cross bullish",
@@ -72,6 +92,7 @@
     {
       "id": "bb_break_atas",
       "category": "volatility",
+      "kind": "score",
       "direction": "bearish",
       "score": -60,
       "label": "Harga menembus upper Bollinger Band",
@@ -80,14 +101,34 @@
     {
       "id": "volume_spike_naik",
       "category": "volatility",
+      "kind": "score",
       "direction": "bullish",
       "score": 40,
       "label": "Lonjakan volume pada candle hijau",
       "detail": "Volume 2.4x rata-rata 20 hari"
     },
     {
+      "id": "obv_konfirmasi_naik",
+      "category": "volatility",
+      "kind": "score",
+      "direction": "bullish",
+      "score": 25,
+      "label": "Volume mengonfirmasi kenaikan",
+      "detail": "OBV di atas rata-rata 20 hari, harga di atas MA20"
+    },
+    {
+      "id": "atr_volatilitas_rendah",
+      "category": "volatility",
+      "kind": "info",
+      "direction": "neutral",
+      "score": 0,
+      "label": "Volatilitas sangat rendah",
+      "detail": "ATR 2.28% dari harga - persentil 6 dalam 180 hari"
+    },
+    {
       "id": "fear_greed",
       "category": "sentiment",
+      "kind": "score",
       "direction": "bullish",
       "score": 8,
       "label": "Sentimen pasar: Netral",
@@ -95,12 +136,12 @@
     }
   ],
   "scores": {
-    "composite": 24,
-    "label": "bullish",
+    "composite": 15,
+    "label": "netral",
     "by_category": {
-      "trend": 70,
+      "trend": 35,
       "momentum": 0,
-      "volatility": -20,
+      "volatility": 5,
       "sentiment": 8
     },
     "weights_used": {
@@ -108,13 +149,23 @@
       "momentum": 0.25,
       "sentiment": 0.25,
       "volatility": 0.15
-    }
+    },
+    "adjustments": [
+      {
+        "category": "trend",
+        "factor": 0.5,
+        "before": 70,
+        "after": 35,
+        "reason": "ADX(14) 19.1 di bawah 20"
+      }
+    ]
   },
   "meta": {
-    "candles_used": 141,
+    "candles_used": 200,
     "fetched_at": "2026-09-08T14:44:23+00:00",
     "fetch_errors": {},
-    "scoring_version": 1,
-    "backfilled": true
+    "scoring_version": 2,
+    "backfilled": true,
+    "rescored_from_version": 1
   }
 }

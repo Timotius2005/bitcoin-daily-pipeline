@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T14:44:23+00:00",
+  "generated_at": "2026-09-14T16:13:23+00:00",
   "data_as_of": "2026-07-29",
   "symbol": "BTCUSDT",
   "price": {
@@ -15,16 +15,23 @@
     "rsi14": 48.72,
     "ma20": 64490.47,
     "ma50": 63389.16,
-    "macd_line": 190.04,
-    "macd_signal": 303.35,
-    "macd_hist": -113.31,
+    "macd_line": 189.29,
+    "macd_signal": 302.24,
+    "macd_hist": -112.95,
     "bb_upper": 66332.19,
     "bb_middle": 64490.47,
     "bb_lower": 62648.75,
     "bb_percent_b": 0.363,
     "volume": 16780.12,
     "volume_ma20": 15322.61,
-    "volume_ratio": 1.1
+    "volume_ratio": 1.1,
+    "atr14": 1679.56,
+    "atr_pct": 2.625,
+    "atr_pct_percentile": 7.5,
+    "adx14": 23.14,
+    "plus_di": 17.24,
+    "minus_di": 25.91,
+    "obv_above_sma20": true
   },
   "sentiment": {
     "fear_greed": {
@@ -40,6 +47,7 @@
     {
       "id": "ma20_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 40,
       "label": "MA20 di atas MA50",
@@ -48,6 +56,7 @@
     {
       "id": "price_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 30,
       "label": "Harga di atas MA50",
@@ -56,14 +65,34 @@
     {
       "id": "macd_bearish_cross",
       "category": "momentum",
+      "kind": "score",
       "direction": "bearish",
       "score": -50,
       "label": "MACD cross bearish",
       "detail": "MACD memotong signal line ke bawah 2 hari lalu"
     },
     {
+      "id": "obv_divergensi_bullish",
+      "category": "volatility",
+      "kind": "score",
+      "direction": "bullish",
+      "score": 20,
+      "label": "Akumulasi saat harga lemah",
+      "detail": "Harga di bawah MA20 tapi OBV di atas rata-rata 20 hari"
+    },
+    {
+      "id": "atr_volatilitas_rendah",
+      "category": "volatility",
+      "kind": "info",
+      "direction": "neutral",
+      "score": 0,
+      "label": "Volatilitas sangat rendah",
+      "detail": "ATR 2.62% dari harga - persentil 8 dalam 180 hari"
+    },
+    {
       "id": "fear_greed",
       "category": "sentiment",
+      "kind": "score",
       "direction": "bullish",
       "score": 42,
       "label": "Sentimen pasar: Fear",
@@ -76,19 +105,23 @@
     "by_category": {
       "trend": 70,
       "momentum": -50,
+      "volatility": 20,
       "sentiment": 42
     },
     "weights_used": {
       "trend": 0.35,
       "momentum": 0.25,
-      "sentiment": 0.25
-    }
+      "sentiment": 0.25,
+      "volatility": 0.15
+    },
+    "adjustments": []
   },
   "meta": {
-    "candles_used": 120,
+    "candles_used": 200,
     "fetched_at": "2026-09-08T14:44:23+00:00",
     "fetch_errors": {},
-    "scoring_version": 1,
-    "backfilled": true
+    "scoring_version": 2,
+    "backfilled": true,
+    "rescored_from_version": 1
   }
 }

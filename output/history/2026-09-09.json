@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T04:06:07+00:00",
+  "generated_at": "2026-09-14T16:13:23+00:00",
   "data_as_of": "2026-09-09",
   "symbol": "BTCUSDT",
   "price": {
@@ -24,7 +24,14 @@
     "bb_percent_b": 0.409,
     "volume": 14129.92,
     "volume_ma20": 17167.03,
-    "volume_ratio": 0.82
+    "volume_ratio": 0.82,
+    "atr14": 2232.41,
+    "atr_pct": 2.851,
+    "atr_pct_percentile": 38.6,
+    "adx14": 47.58,
+    "plus_di": 30.63,
+    "minus_di": 12.17,
+    "obv_above_sma20": false
   },
   "sentiment": {
     "fear_greed": {
@@ -40,6 +47,7 @@
     {
       "id": "ma20_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 40,
       "label": "MA20 di atas MA50",
@@ -48,22 +56,43 @@
     {
       "id": "price_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 30,
       "label": "Harga di atas MA50",
       "detail": "Close 78,306 vs MA50 70,230"
     },
     {
+      "id": "adx_tren_kuat",
+      "category": "trend",
+      "kind": "info",
+      "direction": "neutral",
+      "score": 0,
+      "label": "Tren kuat",
+      "detail": "ADX(14) 47.6 - +DI 30.6 vs -DI 12.2"
+    },
+    {
       "id": "macd_hist_negatif",
       "category": "momentum",
+      "kind": "score",
       "direction": "bearish",
       "score": -25,
       "label": "Histogram MACD negatif",
       "detail": "Histogram -497.6 - momentum masih di sisi turun"
     },
     {
+      "id": "obv_konfirmasi_turun",
+      "category": "volatility",
+      "kind": "score",
+      "direction": "bearish",
+      "score": -25,
+      "label": "Volume mengonfirmasi penurunan",
+      "detail": "OBV di bawah rata-rata 20 hari, harga di bawah MA20"
+    },
+    {
       "id": "fear_greed",
       "category": "sentiment",
+      "kind": "score",
       "direction": "bearish",
       "score": -38,
       "label": "Sentimen pasar: Greed",
@@ -71,23 +100,28 @@
     }
   ],
   "scores": {
-    "composite": 10,
+    "composite": 5,
     "label": "netral",
     "by_category": {
       "trend": 70,
       "momentum": -25,
+      "volatility": -25,
       "sentiment": -38
     },
     "weights_used": {
       "trend": 0.35,
       "momentum": 0.25,
-      "sentiment": 0.25
-    }
+      "sentiment": 0.25,
+      "volatility": 0.15
+    },
+    "adjustments": []
   },
   "meta": {
     "candles_used": 200,
     "fetched_at": "2026-09-10T04:06:07+00:00",
     "fetch_errors": {},
-    "scoring_version": 1
+    "scoring_version": 2,
+    "backfilled": false,
+    "rescored_from_version": 1
   }
 }

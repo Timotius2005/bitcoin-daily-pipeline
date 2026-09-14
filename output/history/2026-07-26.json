@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T14:44:23+00:00",
+  "generated_at": "2026-09-14T16:13:23+00:00",
   "data_as_of": "2026-07-26",
   "symbol": "BTCUSDT",
   "price": {
@@ -15,16 +15,23 @@
     "rsi14": 55.08,
     "ma20": 64351.91,
     "ma50": 63319.02,
-    "macd_line": 444.52,
-    "macd_signal": 357.38,
-    "macd_hist": 87.14,
+    "macd_line": 443.57,
+    "macd_signal": 355.99,
+    "macd_hist": 87.58,
     "bb_upper": 66503.58,
     "bb_middle": 64351.91,
     "bb_lower": 62200.24,
     "bb_percent_b": 0.744,
     "volume": 7933.06,
     "volume_ma20": 15659.37,
-    "volume_ratio": 0.51
+    "volume_ratio": 0.51,
+    "atr14": 1688.92,
+    "atr_pct": 2.582,
+    "atr_pct_percentile": 5.3,
+    "adx14": 23.1,
+    "plus_di": 18.0,
+    "minus_di": 24.81,
+    "obv_above_sma20": false
   },
   "sentiment": {
     "fear_greed": {
@@ -40,6 +47,7 @@
     {
       "id": "ma20_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 40,
       "label": "MA20 di atas MA50",
@@ -48,6 +56,7 @@
     {
       "id": "price_above_ma50",
       "category": "trend",
+      "kind": "score",
       "direction": "bullish",
       "score": 30,
       "label": "Harga di atas MA50",
@@ -56,14 +65,34 @@
     {
       "id": "macd_hist_positif",
       "category": "momentum",
+      "kind": "score",
       "direction": "bullish",
       "score": 25,
       "label": "Histogram MACD positif",
-      "detail": "Histogram 87.1 - momentum masih di sisi naik"
+      "detail": "Histogram 87.6 - momentum masih di sisi naik"
+    },
+    {
+      "id": "obv_divergensi_bearish",
+      "category": "volatility",
+      "kind": "score",
+      "direction": "bearish",
+      "score": -20,
+      "label": "Kenaikan tanpa dukungan volume",
+      "detail": "Harga di atas MA20 tapi OBV di bawah rata-rata 20 hari"
+    },
+    {
+      "id": "atr_volatilitas_rendah",
+      "category": "volatility",
+      "kind": "info",
+      "direction": "neutral",
+      "score": 0,
+      "label": "Volatilitas sangat rendah",
+      "detail": "ATR 2.58% dari harga - persentil 5 dalam 180 hari"
     },
     {
       "id": "fear_greed",
       "category": "sentiment",
+      "kind": "score",
       "direction": "bullish",
       "score": 48,
       "label": "Sentimen pasar: Fear",
@@ -71,24 +100,28 @@
     }
   ],
   "scores": {
-    "composite": 50,
-    "label": "bullish kuat",
+    "composite": 40,
+    "label": "bullish",
     "by_category": {
       "trend": 70,
       "momentum": 25,
+      "volatility": -20,
       "sentiment": 48
     },
     "weights_used": {
       "trend": 0.35,
       "momentum": 0.25,
-      "sentiment": 0.25
-    }
+      "sentiment": 0.25,
+      "volatility": 0.15
+    },
+    "adjustments": []
   },
   "meta": {
-    "candles_used": 117,
+    "candles_used": 200,
     "fetched_at": "2026-09-08T14:44:23+00:00",
     "fetch_errors": {},
-    "scoring_version": 1,
-    "backfilled": true
+    "scoring_version": 2,
+    "backfilled": true,
+    "rescored_from_version": 1
   }
 }

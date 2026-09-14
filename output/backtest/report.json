@@ -1,0 +1,964 @@
+{
+  "period": {
+    "start": "2024-09-14",
+    "end": "2026-09-13",
+    "days": 730,
+    "window": 200,
+    "fee": 0.001,
+    "horizons": [
+      1,
+      7,
+      30
+    ],
+    "generated_at": "2026-09-14T16:13:28+00:00",
+    "thresholds": {
+      "bullish_min": 20,
+      "adx_weak": 20.0,
+      "adx_strong": 25.0,
+      "trend_dampen": 0.5,
+      "atr_calm_pctl": 10.0,
+      "atr_extreme_pctl": 90.0
+    }
+  },
+  "baseline": {
+    "1": {
+      "n": 729,
+      "mean": 0.000605468306006287,
+      "median": 0.00010311707406529536,
+      "up_rate": 0.5020576131687243,
+      "down_rate": 0.49794238683127573,
+      "mean_abs": 0.016247750893067094
+    },
+    "7": {
+      "n": 723,
+      "mean": 0.004165675183193033,
+      "median": 0.003258478935400877,
+      "up_rate": 0.5297372060857538,
+      "down_rate": 0.4702627939142462,
+      "mean_abs": 0.04402072419570525
+    },
+    "30": {
+      "n": 700,
+      "mean": 0.017770432445281665,
+      "median": 0.011156569705177088,
+      "up_rate": 0.5428571428571428,
+      "down_rate": 0.45714285714285713,
+      "mean_abs": 0.10416209198036877
+    }
+  },
+  "buy_hold": {
+    "total_return": 0.2795494590265646,
+    "cagr": 0.13136298596510754,
+    "max_drawdown": -0.5297176591351065,
+    "sharpe": 0.4999819254864727,
+    "exposure": 1.0,
+    "trades": 1,
+    "days": 729
+  },
+  "versions": {
+    "1": {
+      "ic": {
+        "1": {
+          "ic": 0.032068131172610356,
+          "n": 729,
+          "n_eff": 729,
+          "t": 0.8650959489954575
+        },
+        "7": {
+          "ic": 0.018506737686795022,
+          "n": 723,
+          "n_eff": 103,
+          "t": 0.18602227088563805
+        },
+        "30": {
+          "ic": 0.09856930793046281,
+          "n": 700,
+          "n_eff": 23,
+          "t": 0.45391177971646623
+        }
+      },
+      "buckets": {
+        "1": [
+          {
+            "label": "bearish kuat",
+            "n": 4,
+            "mean": 0.004823021887409323,
+            "median": -0.0003377125393753677,
+            "up_rate": 0.25,
+            "down_rate": 0.75,
+            "mean_abs": 0.006919611941242937
+          },
+          {
+            "label": "bearish",
+            "n": 50,
+            "mean": -0.003415696947329583,
+            "median": 0.001235819500875368,
+            "up_rate": 0.5,
+            "down_rate": 0.5,
+            "mean_abs": 0.018372311880618483
+          },
+          {
+            "label": "netral",
+            "n": 482,
+            "mean": 0.0004398998973280456,
+            "median": -0.0005468168153153763,
+            "up_rate": 0.4896265560165975,
+            "down_rate": 0.5103734439834025,
+            "mean_abs": 0.017253113200723185
+          },
+          {
+            "label": "bullish",
+            "n": 171,
+            "mean": 0.0022386098155649375,
+            "median": 0.0018023848543999854,
+            "up_rate": 0.5555555555555556,
+            "down_rate": 0.4444444444444444,
+            "mean_abs": 0.012995638527931565
+          },
+          {
+            "label": "bullish kuat",
+            "n": 22,
+            "mean": -8.88579126498726e-05,
+            "median": -0.0026779441295206596,
+            "up_rate": 0.4090909090909091,
+            "down_rate": 0.5909090909090909,
+            "mean_abs": 0.0163664367375065
+          }
+        ],
+        "7": [
+          {
+            "label": "bearish kuat",
+            "n": 4,
+            "mean": 0.06470310086685427,
+            "median": 0.07605571683160839,
+            "up_rate": 1.0,
+            "down_rate": 0.0,
+            "mean_abs": 0.06470310086685427
+          },
+          {
+            "label": "bearish",
+            "n": 50,
+            "mean": -0.008503220117232478,
+            "median": 0.0012280950242773425,
+            "up_rate": 0.52,
+            "down_rate": 0.48,
+            "mean_abs": 0.04698857205561475
+          },
+          {
+            "label": "netral",
+            "n": 476,
+            "mean": 0.00463798105077839,
+            "median": 0.004157880485101684,
+            "up_rate": 0.5336134453781513,
+            "down_rate": 0.46638655462184875,
+            "mean_abs": 0.044159111621672506
+          },
+          {
+            "label": "bullish",
+            "n": 171,
+            "mean": 0.0054438941224570865,
+            "median": 0.0007976770421986856,
+            "up_rate": 0.5146198830409356,
+            "down_rate": 0.4853801169590643,
+            "mean_abs": 0.043480087794744826
+          },
+          {
+            "label": "bullish kuat",
+            "n": 22,
+            "mean": 0.0017975856696406515,
+            "median": 0.0019436552990825806,
+            "up_rate": 0.5,
+            "down_rate": 0.5,
+            "mean_abs": 0.034723201928602745
+          }
+        ],
+        "30": [
+          {
+            "label": "bearish kuat",
+            "n": 4,
+            "mean": -0.013605585206835608,
+            "median": 0.021483545851710195,
+            "up_rate": 0.75,
+            "down_rate": 0.25,
+            "mean_abs": 0.05611638813180228
+          },
+          {
+            "label": "bearish",
+            "n": 50,
+            "mean": -0.016216109912770452,
+            "median": -0.007265548227706309,
+            "up_rate": 0.44,
+            "down_rate": 0.56,
+            "mean_abs": 0.08467846001578216
+          },
+          {
+            "label": "netral",
+            "n": 460,
+            "mean": 0.01244319750615673,
+            "median": 0.006860713527661155,
+            "up_rate": 0.5369565217391304,
+            "down_rate": 0.46304347826086956,
+            "mean_abs": 0.0902825479668385
+          },
+          {
+            "label": "bullish",
+            "n": 164,
+            "mean": 0.038645026396350556,
+            "median": 0.03644629916268294,
+            "up_rate": 0.5548780487804879,
+            "down_rate": 0.4451219512195122,
+            "mean_abs": 0.1419969342607713
+          },
+          {
+            "label": "bullish kuat",
+            "n": 22,
+            "mean": 0.056494334833156516,
+            "median": 0.09821033501539478,
+            "up_rate": 0.7727272727272727,
+            "down_rate": 0.22727272727272727,
+            "mean_abs": 0.16534575224680031
+          }
+        ]
+      },
+      "categories": {
+        "7": {
+          "trend": {
+            "ic": 0.027484359178438198,
+            "n": 723,
+            "t": 0.2763187752056109
+          },
+          "momentum": {
+            "ic": -0.04425664209605075,
+            "n": 723,
+            "t": -0.44520996751232556
+          },
+          "sentiment": {
+            "ic": -0.03547401813930167,
+            "n": 722,
+            "t": -0.35673399883634654
+          },
+          "volatility": {
+            "ic": 0.10766397496466384,
+            "n": 96,
+            "t": 0.3591687338615009
+          }
+        },
+        "30": {
+          "trend": {
+            "ic": 0.07860376348978337,
+            "n": 700,
+            "t": 0.36132566025018414
+          },
+          "momentum": {
+            "ic": 0.06758563260685584,
+            "n": 700,
+            "t": 0.3104260736575221
+          },
+          "sentiment": {
+            "ic": -0.024362851769536772,
+            "n": 699,
+            "t": -0.11167776038452645
+          },
+          "volatility": {
+            "ic": 0.06366724302091303,
+            "n": 91,
+            "t": 0.06379667479712112
+          }
+        }
+      },
+      "signals": [
+        {
+          "id": "fear_greed",
+          "label": "Sentimen takut (contrarian bullish)",
+          "category": "sentiment",
+          "sign": 1,
+          "n": 419,
+          "mean": 0.0003654663646568394,
+          "hit_rate": 0.513126491646778
+        },
+        {
+          "id": "ma20_above_ma50",
+          "label": "MA20 di atas MA50",
+          "category": "trend",
+          "sign": 1,
+          "n": 408,
+          "mean": 0.005948149080935004,
+          "hit_rate": 0.5245098039215687
+        },
+        {
+          "id": "price_above_ma50",
+          "label": "Harga di atas MA50",
+          "category": "trend",
+          "sign": 1,
+          "n": 397,
+          "mean": 0.009189580881895578,
+          "hit_rate": 0.5415617128463476
+        },
+        {
+          "id": "price_below_ma50",
+          "label": "Harga di bawah MA50",
+          "category": "trend",
+          "sign": -1,
+          "n": 326,
+          "mean": -0.0019523940265766316,
+          "hit_rate": 0.48466257668711654
+        },
+        {
+          "id": "ma20_below_ma50",
+          "label": "MA20 di bawah MA50",
+          "category": "trend",
+          "sign": -1,
+          "n": 315,
+          "mean": 0.0018569470870700988,
+          "hit_rate": 0.4634920634920635
+        },
+        {
+          "id": "macd_hist_positif",
+          "label": "Histogram MACD positif",
+          "category": "momentum",
+          "sign": 1,
+          "n": 284,
+          "mean": 0.007209412243025293,
+          "hit_rate": 0.5598591549295775
+        },
+        {
+          "id": "fear_greed",
+          "label": "Sentimen serakah (contrarian bearish)",
+          "category": "sentiment",
+          "sign": -1,
+          "n": 283,
+          "mean": 0.009274149201771366,
+          "hit_rate": 0.45229681978798586
+        },
+        {
+          "id": "macd_hist_negatif",
+          "label": "Histogram MACD negatif",
+          "category": "momentum",
+          "sign": -1,
+          "n": 229,
+          "mean": -0.0037079869399185414,
+          "hit_rate": 0.4759825327510917
+        },
+        {
+          "id": "rsi_tinggi",
+          "label": "RSI tinggi",
+          "category": "momentum",
+          "sign": -1,
+          "n": 142,
+          "mean": -0.0019174471160738572,
+          "hit_rate": 0.4507042253521127
+        },
+        {
+          "id": "macd_bullish_cross",
+          "label": "MACD cross bullish",
+          "category": "momentum",
+          "sign": 1,
+          "n": 123,
+          "mean": 0.0010569573079367755,
+          "hit_rate": 0.4715447154471545
+        },
+        {
+          "id": "rsi_lemah",
+          "label": "RSI lemah",
+          "category": "momentum",
+          "sign": 1,
+          "n": 89,
+          "mean": -0.014024917876425473,
+          "hit_rate": 0.47191011235955055
+        },
+        {
+          "id": "macd_bearish_cross",
+          "label": "MACD cross bearish",
+          "category": "momentum",
+          "sign": -1,
+          "n": 87,
+          "mean": 0.019349808514879337,
+          "hit_rate": 0.47126436781609193
+        },
+        {
+          "id": "rsi_overbought",
+          "label": "RSI overbought",
+          "category": "momentum",
+          "sign": -1,
+          "n": 55,
+          "mean": 0.023266541653143735,
+          "hit_rate": 0.41818181818181815
+        },
+        {
+          "id": "bb_break_atas",
+          "label": "Harga menembus upper Bollinger Band",
+          "category": "volatility",
+          "sign": -1,
+          "n": 48,
+          "mean": 0.005360826807449222,
+          "hit_rate": 0.4791666666666667
+        },
+        {
+          "id": "golden_cross",
+          "label": "Golden cross MA20/MA50",
+          "category": "trend",
+          "sign": 1,
+          "n": 36,
+          "mean": 0.010272468631029201,
+          "hit_rate": 0.6111111111111112
+        },
+        {
+          "id": "bb_break_bawah",
+          "label": "Harga menembus lower Bollinger Band",
+          "category": "volatility",
+          "sign": 1,
+          "n": 34,
+          "mean": 0.0062018120305764235,
+          "hit_rate": 0.5882352941176471
+        },
+        {
+          "id": "death_cross",
+          "label": "Death cross MA20/MA50",
+          "category": "trend",
+          "sign": -1,
+          "n": 32,
+          "mean": -0.02700615129216237,
+          "hit_rate": 0.625
+        },
+        {
+          "id": "rsi_oversold",
+          "label": "RSI oversold",
+          "category": "momentum",
+          "sign": 1,
+          "n": 26,
+          "mean": 0.003325714184118875,
+          "hit_rate": 0.5769230769230769
+        },
+        {
+          "id": "fear_greed",
+          "label": "Sentimen netral",
+          "category": "sentiment",
+          "sign": 0,
+          "n": 20,
+          "mean": 0.010002810642891064,
+          "hit_rate": null
+        },
+        {
+          "id": "volume_spike_turun",
+          "label": "Lonjakan volume pada candle merah",
+          "category": "volatility",
+          "sign": -1,
+          "n": 19,
+          "mean": -0.013807507004164613,
+          "hit_rate": 0.42105263157894735
+        },
+        {
+          "id": "volume_spike_naik",
+          "label": "Lonjakan volume pada candle hijau",
+          "category": "volatility",
+          "sign": 1,
+          "n": 15,
+          "mean": 0.021338573606077434,
+          "hit_rate": 0.4666666666666667
+        }
+      ],
+      "strategies": {
+        "bullish": {
+          "total_return": 0.2722910863725918,
+          "cagr": 0.12814513557266127,
+          "max_drawdown": -0.14055988659908913,
+          "sharpe": 0.7600198443916292,
+          "exposure": 0.26474622770919065,
+          "trades": 108,
+          "days": 729
+        },
+        "positive": {
+          "total_return": 0.25737366286599883,
+          "cagr": 0.1215028960123099,
+          "max_drawdown": -0.2645341850103755,
+          "sharpe": 0.5260520904262266,
+          "exposure": 0.6104252400548696,
+          "trades": 137,
+          "days": 729
+        }
+      }
+    },
+    "2": {
+      "ic": {
+        "1": {
+          "ic": 0.02438866666884083,
+          "n": 729,
+          "n_eff": 729,
+          "t": 0.6577857526246719
+        },
+        "7": {
+          "ic": 0.05039397068115645,
+          "n": 723,
+          "n_eff": 103,
+          "t": 0.5070974469635972
+        },
+        "30": {
+          "ic": 0.12963305026631644,
+          "n": 700,
+          "n_eff": 23,
+          "t": 0.5991085212328183
+        }
+      },
+      "buckets": {
+        "1": [
+          {
+            "label": "bearish kuat",
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "up_rate": null,
+            "down_rate": null,
+            "mean_abs": null
+          },
+          {
+            "label": "bearish",
+            "n": 41,
+            "mean": -0.0010506855192663343,
+            "median": 0.002541045786250251,
+            "up_rate": 0.5121951219512195,
+            "down_rate": 0.4878048780487805,
+            "mean_abs": 0.01774911238030018
+          },
+          {
+            "label": "netral",
+            "n": 556,
+            "mean": 0.0005698742662799818,
+            "median": 2.6366544424449856e-05,
+            "up_rate": 0.5,
+            "down_rate": 0.5,
+            "mean_abs": 0.016697042749957296
+          },
+          {
+            "label": "bullish",
+            "n": 127,
+            "mean": 0.0014292355116886388,
+            "median": 0.00032903805583761603,
+            "up_rate": 0.5118110236220472,
+            "down_rate": 0.4881889763779528,
+            "mean_abs": 0.013923876328030344
+          },
+          {
+            "label": "bullish kuat",
+            "n": 5,
+            "mean": -0.0027797001335248205,
+            "median": -0.0015068189681346489,
+            "up_rate": 0.4,
+            "down_rate": 0.6,
+            "mean_abs": 0.013001746163498784
+          }
+        ],
+        "7": [
+          {
+            "label": "bearish kuat",
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "up_rate": null,
+            "down_rate": null,
+            "mean_abs": null
+          },
+          {
+            "label": "bearish",
+            "n": 41,
+            "mean": -0.01138790305338518,
+            "median": -0.004681414869757705,
+            "up_rate": 0.4634146341463415,
+            "down_rate": 0.5365853658536586,
+            "mean_abs": 0.05372016060355563
+          },
+          {
+            "label": "netral",
+            "n": 550,
+            "mean": 0.007012015740155601,
+            "median": 0.0062818005297289314,
+            "up_rate": 0.5545454545454546,
+            "down_rate": 0.44545454545454544,
+            "mean_abs": 0.04472628502701435
+          },
+          {
+            "label": "bullish",
+            "n": 127,
+            "mean": -0.002913322470871537,
+            "median": -0.00704553657130691,
+            "up_rate": 0.44881889763779526,
+            "down_rate": 0.5511811023622047,
+            "mean_abs": 0.03784358357232769
+          },
+          {
+            "label": "bullish kuat",
+            "n": 5,
+            "mean": -0.0015859041295079423,
+            "median": -0.0229812011276902,
+            "up_rate": 0.4,
+            "down_rate": 0.6,
+            "mean_abs": 0.043773026041120947
+          }
+        ],
+        "30": [
+          {
+            "label": "bearish kuat",
+            "n": 0,
+            "mean": null,
+            "median": null,
+            "up_rate": null,
+            "down_rate": null,
+            "mean_abs": null
+          },
+          {
+            "label": "bearish",
+            "n": 41,
+            "mean": -0.03977486607150059,
+            "median": -0.024773176721286316,
+            "up_rate": 0.36585365853658536,
+            "down_rate": 0.6341463414634146,
+            "mean_abs": 0.08185457100309716
+          },
+          {
+            "label": "netral",
+            "n": 532,
+            "mean": 0.023505062482784257,
+            "median": 0.011773366170380273,
+            "up_rate": 0.5545112781954887,
+            "down_rate": 0.44548872180451127,
+            "mean_abs": 0.0983373310507364
+          },
+          {
+            "label": "bullish",
+            "n": 122,
+            "mean": 0.014101821884155383,
+            "median": 0.03183874625790317,
+            "up_rate": 0.5491803278688525,
+            "down_rate": 0.45081967213114754,
+            "mean_abs": 0.13523590703832622
+          },
+          {
+            "label": "bullish kuat",
+            "n": 5,
+            "mean": -0.03100865801589845,
+            "median": 0.046674598320000316,
+            "up_rate": 0.6,
+            "down_rate": 0.4,
+            "mean_abs": 0.14863723949271762
+          }
+        ]
+      },
+      "categories": {
+        "7": {
+          "trend": {
+            "ic": 0.04418544781080388,
+            "n": 723,
+            "t": 0.44449236993559627
+          },
+          "momentum": {
+            "ic": -0.04425664209605075,
+            "n": 723,
+            "t": -0.44520996751232556
+          },
+          "sentiment": {
+            "ic": -0.03547401813930167,
+            "n": 722,
+            "t": -0.35673399883634654
+          },
+          "volatility": {
+            "ic": 0.04836794103325223,
+            "n": 723,
+            "t": 0.4866613866338776
+          }
+        },
+        "30": {
+          "trend": {
+            "ic": 0.0577809109497526,
+            "n": 700,
+            "t": 0.26522851874578585
+          },
+          "momentum": {
+            "ic": 0.06758563260685584,
+            "n": 700,
+            "t": 0.3104260736575221
+          },
+          "sentiment": {
+            "ic": -0.024362851769536772,
+            "n": 699,
+            "t": -0.11167776038452645
+          },
+          "volatility": {
+            "ic": 0.12524905487355936,
+            "n": 700,
+            "t": 0.5785189191413633
+          }
+        }
+      },
+      "signals": [
+        {
+          "id": "fear_greed",
+          "label": "Sentimen takut (contrarian bullish)",
+          "category": "sentiment",
+          "sign": 1,
+          "n": 419,
+          "mean": 0.0003654663646568394,
+          "hit_rate": 0.513126491646778
+        },
+        {
+          "id": "ma20_above_ma50",
+          "label": "MA20 di atas MA50",
+          "category": "trend",
+          "sign": 1,
+          "n": 408,
+          "mean": 0.005948149080935004,
+          "hit_rate": 0.5245098039215687
+        },
+        {
+          "id": "price_above_ma50",
+          "label": "Harga di atas MA50",
+          "category": "trend",
+          "sign": 1,
+          "n": 397,
+          "mean": 0.009189580881895578,
+          "hit_rate": 0.5415617128463476
+        },
+        {
+          "id": "price_below_ma50",
+          "label": "Harga di bawah MA50",
+          "category": "trend",
+          "sign": -1,
+          "n": 326,
+          "mean": -0.0019523940265766316,
+          "hit_rate": 0.48466257668711654
+        },
+        {
+          "id": "ma20_below_ma50",
+          "label": "MA20 di bawah MA50",
+          "category": "trend",
+          "sign": -1,
+          "n": 315,
+          "mean": 0.0018569470870700988,
+          "hit_rate": 0.4634920634920635
+        },
+        {
+          "id": "obv_konfirmasi_naik",
+          "label": "Volume mengonfirmasi kenaikan",
+          "category": "volatility",
+          "sign": 1,
+          "n": 302,
+          "mean": 0.008233298120934837,
+          "hit_rate": 0.5596026490066225
+        },
+        {
+          "id": "obv_konfirmasi_turun",
+          "label": "Volume mengonfirmasi penurunan",
+          "category": "volatility",
+          "sign": -1,
+          "n": 297,
+          "mean": 0.003266430245686148,
+          "hit_rate": 0.47474747474747475
+        },
+        {
+          "id": "macd_hist_positif",
+          "label": "Histogram MACD positif",
+          "category": "momentum",
+          "sign": 1,
+          "n": 284,
+          "mean": 0.007209412243025293,
+          "hit_rate": 0.5598591549295775
+        },
+        {
+          "id": "fear_greed",
+          "label": "Sentimen serakah (contrarian bearish)",
+          "category": "sentiment",
+          "sign": -1,
+          "n": 283,
+          "mean": 0.009274149201771366,
+          "hit_rate": 0.45229681978798586
+        },
+        {
+          "id": "macd_hist_negatif",
+          "label": "Histogram MACD negatif",
+          "category": "momentum",
+          "sign": -1,
+          "n": 229,
+          "mean": -0.0037079869399185414,
+          "hit_rate": 0.4759825327510917
+        },
+        {
+          "id": "rsi_tinggi",
+          "label": "RSI tinggi",
+          "category": "momentum",
+          "sign": -1,
+          "n": 142,
+          "mean": -0.0019174471160738572,
+          "hit_rate": 0.4507042253521127
+        },
+        {
+          "id": "macd_bullish_cross",
+          "label": "MACD cross bullish",
+          "category": "momentum",
+          "sign": 1,
+          "n": 123,
+          "mean": 0.0010569573079367755,
+          "hit_rate": 0.4715447154471545
+        },
+        {
+          "id": "rsi_lemah",
+          "label": "RSI lemah",
+          "category": "momentum",
+          "sign": 1,
+          "n": 89,
+          "mean": -0.014024917876425473,
+          "hit_rate": 0.47191011235955055
+        },
+        {
+          "id": "macd_bearish_cross",
+          "label": "MACD cross bearish",
+          "category": "momentum",
+          "sign": -1,
+          "n": 87,
+          "mean": 0.019349808514879337,
+          "hit_rate": 0.47126436781609193
+        },
+        {
+          "id": "obv_divergensi_bearish",
+          "label": "Kenaikan tanpa dukungan volume",
+          "category": "volatility",
+          "sign": -1,
+          "n": 78,
+          "mean": 0.0056961193434936774,
+          "hit_rate": 0.5256410256410257
+        },
+        {
+          "id": "rsi_overbought",
+          "label": "RSI overbought",
+          "category": "momentum",
+          "sign": -1,
+          "n": 55,
+          "mean": 0.023266541653143735,
+          "hit_rate": 0.41818181818181815
+        },
+        {
+          "id": "bb_break_atas",
+          "label": "Harga menembus upper Bollinger Band",
+          "category": "volatility",
+          "sign": -1,
+          "n": 48,
+          "mean": 0.005360826807449222,
+          "hit_rate": 0.4791666666666667
+        },
+        {
+          "id": "obv_divergensi_bullish",
+          "label": "Akumulasi saat harga lemah",
+          "category": "volatility",
+          "sign": 1,
+          "n": 46,
+          "mean": -0.01932826014858806,
+          "hit_rate": 0.45652173913043476
+        },
+        {
+          "id": "golden_cross",
+          "label": "Golden cross MA20/MA50",
+          "category": "trend",
+          "sign": 1,
+          "n": 36,
+          "mean": 0.010272468631029201,
+          "hit_rate": 0.6111111111111112
+        },
+        {
+          "id": "bb_break_bawah",
+          "label": "Harga menembus lower Bollinger Band",
+          "category": "volatility",
+          "sign": 1,
+          "n": 34,
+          "mean": 0.0062018120305764235,
+          "hit_rate": 0.5882352941176471
+        },
+        {
+          "id": "death_cross",
+          "label": "Death cross MA20/MA50",
+          "category": "trend",
+          "sign": -1,
+          "n": 32,
+          "mean": -0.02700615129216237,
+          "hit_rate": 0.625
+        },
+        {
+          "id": "rsi_oversold",
+          "label": "RSI oversold",
+          "category": "momentum",
+          "sign": 1,
+          "n": 26,
+          "mean": 0.003325714184118875,
+          "hit_rate": 0.5769230769230769
+        },
+        {
+          "id": "fear_greed",
+          "label": "Sentimen netral",
+          "category": "sentiment",
+          "sign": 0,
+          "n": 20,
+          "mean": 0.010002810642891064,
+          "hit_rate": null
+        },
+        {
+          "id": "volume_spike_turun",
+          "label": "Lonjakan volume pada candle merah",
+          "category": "volatility",
+          "sign": -1,
+          "n": 19,
+          "mean": -0.013807507004164613,
+          "hit_rate": 0.42105263157894735
+        },
+        {
+          "id": "volume_spike_naik",
+          "label": "Lonjakan volume pada candle hijau",
+          "category": "volatility",
+          "sign": 1,
+          "n": 15,
+          "mean": 0.021338573606077434,
+          "hit_rate": 0.4666666666666667
+        }
+      ],
+      "strategies": {
+        "bullish": {
+          "total_return": 0.07028549265926465,
+          "cagr": 0.03459423080219848,
+          "max_drawdown": -0.12070552662613165,
+          "sharpe": 0.2964324117316221,
+          "exposure": 0.18106995884773663,
+          "trades": 76,
+          "days": 729
+        },
+        "positive": {
+          "total_return": 0.28496566682228885,
+          "cagr": 0.1337582164930784,
+          "max_drawdown": -0.29847671900286266,
+          "sharpe": 0.5689736399615132,
+          "exposure": 0.578875171467764,
+          "trades": 127,
+          "days": 729
+        }
+      },
+      "adx_gate": {
+        "kuat": {
+          "n": 498,
+          "hit_rate": 0.5180722891566265
+        },
+        "lemah": {
+          "n": 225,
+          "hit_rate": 0.4533333333333333
+        }
+      },
+      "atr_regime": {
+        "semua": {
+          "n": 723,
+          "mean_abs": 0.04402072419570525
+        },
+        "rendah": {
+          "n": 163,
+          "mean_abs": 0.04591214525969672
+        },
+        "ekstrem": {
+          "n": 100,
+          "mean_abs": 0.04226218366401954
+        }
+      }
+    }
+  }
+}

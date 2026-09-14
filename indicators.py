@@ -152,3 +152,130 @@ def crossed_down_within(fast: Series, slow: Series, days: int) -> int | None:
         if idx >= 1 and crossed_down(fast, slow, idx):
             return back
     return None
+
+
+# ── Indikator berbasis rentang harga (butuh high/low, bukan cuma close) ──
+
+def true_range(highs: list[float], lows: list[float], closes: list[float]) -> list[float]:
+    """True Range: yang terbesar dari high-low dan jarak ke close kemarin.
+
+    Indeks 0 tidak punya close kemarin, jadi nilainya high-low saja.
+    """
+    out: list[float] = []
+    for i in range(len(closes)):
+        if i == 0:
+            out.append(highs[0] - lows[0])
+            continue
+        prev_close = closes[i - 1]
+        out.append(max(
+            highs[i] - lows[i],
+            abs(highs[i] - prev_close),
+            abs(lows[i] - prev_close),
+        ))
+    return out
+
+
+def wilder(values: list[float], period: int, start: int = 0) -> Series:
+    """Rata-rata bergerak Wilder (RMA), smoothing yang dipakai ATR dan ADX.
+
+    Nilai pertama = rata-rata sederhana `period` nilai mulai indeks `start`,
+    setelahnya prev + (x - prev) / period.
+    """
+    out: Series = [None] * len(values)
+    first = start + period - 1
+    if period <= 0 or start < 0 or first >= len(values):
+        return out
+    prev = sum(values[start:first + 1]) / period
+    out[first] = prev
+    for i in range(first + 1, len(values)):
+        prev = prev + (values[i] - prev) / period
+        out[i] = prev
+    return out
+
+
+def atr(
+    highs: list[float], lows: list[float], closes: list[float], period: int = 14
+) -> Series:
+    """Average True Range (Wilder). Valid mulai indeks `period`.
+
+    TR indeks 0 dilewati karena bukan true range sejati.
+    """
+    return wilder(true_range(highs, lows, closes), period, start=1)
+
+
+def adx(
+    highs: list[float], lows: list[float], closes: list[float], period: int = 14
+) -> tuple[Series, Series, Series]:
+    """Return (adx, plus_di, minus_di).
+
+    ADX mengukur KEKUATAN tren, bukan arahnya: mendekati 0 berarti pasar
+    tanpa tren, makin tinggi makin kuat - naik maupun turun. Arahnya dibaca
+    dari +DI vs -DI. DI valid mulai indeks `period`, ADX mulai `2*period - 1`.
+    """
+    n = len(closes)
+    if period <= 0 or n < 2 * period:
+        return [None] * n, [None] * n, [None] * n
+
+    plus_dm = [0.0] * n
+    minus_dm = [0.0] * n
+    for i in range(1, n):
+        naik = highs[i] - highs[i - 1]
+        turun = lows[i - 1] - lows[i]
+        if naik > turun and naik > 0:
+            plus_dm[i] = naik
+        if turun > naik and turun > 0:
+            minus_dm[i] = turun
+
+    # Smoothing RMA untuk TR, +DM, dan -DM. Rasio DM/TR identik dengan versi
+    # jumlah-berjalan asli Wilder, karena keduanya diskalakan faktor yang sama.
+    tr_s = wilder(true_range(highs, lows, closes), period, start=1)
+    plus_s = wilder(plus_dm, period, start=1)
+    minus_s = wilder(minus_dm, period, start=1)
+
+    plus_di: Series = [None] * n
+    minus_di: Series = [None] * n
+    dx = [0.0] * n
+    for i in range(period, n):
+        tr_v, p_v, m_v = tr_s[i], plus_s[i], minus_s[i]
+        if tr_v is None or p_v is None or m_v is None:
+            continue
+        if tr_v == 0:
+            plus_di[i] = minus_di[i] = 0.0
+            continue
+        plus_di[i] = 100 * p_v / tr_v
+        minus_di[i] = 100 * m_v / tr_v
+        total = plus_di[i] + minus_di[i]
+        dx[i] = 0.0 if total == 0 else 100 * abs(plus_di[i] - minus_di[i]) / total
+
+    return wilder(dx, period, start=period), plus_di, minus_di
+
+
+def obv(closes: list[float], volumes: list[float]) -> list[float]:
+    """On-Balance Volume: volume ditambah saat close naik, dikurangi saat turun.
+
+    Level absolutnya bergantung pada titik awal jendela data, jadi yang
+    bermakna hanya perbandingan dengan dirinya sendiri (misal terhadap
+    rata-ratanya) - pergeseran konstan membatalkan diri di perbandingan itu.
+    """
+    out = [0.0] * len(closes)
+    for i in range(1, len(closes)):
+        if closes[i] > closes[i - 1]:
+            out[i] = out[i - 1] + volumes[i]
+        elif closes[i] < closes[i - 1]:
+            out[i] = out[i - 1] - volumes[i]
+        else:
+            out[i] = out[i - 1]
+    return out
+
+
+def percentile_rank(values: list[float], x: float) -> float | None:
+    """Persentil x di dalam values (0..100), mid-rank untuk nilai kembar.
+
+    Mid-rank mencegah deret yang semuanya sama terbaca sebagai persentil 100:
+    nilai yang tidak istimewa mendapat 50.
+    """
+    if not values:
+        return None
+    di_bawah = sum(1 for v in values if v < x)
+    sama = sum(1 for v in values if v == x)
+    return 100.0 * (di_bawah + 0.5 * sama) / len(values)

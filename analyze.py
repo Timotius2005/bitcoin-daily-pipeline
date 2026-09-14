@@ -16,6 +16,19 @@ Keduanya memang bisa bertentangan, dan itu wajar - composite score yang
 menengahi, dan breakdown per kategori di output menunjukkan dari mana
 ketidaksepakatannya datang.
 
+Versi scoring
+-------------
+v1  MA, RSI, MACD, Bollinger, lonjakan volume, Fear & Greed.
+v2  v1 + tiga indikator yang menambah informasi yang belum ada di v1:
+    * ADX  - KEKUATAN tren. Saat ADX < 20 pasar cenderung sideways dan
+             sinyal MA tidak andal, jadi skor kategori tren diredam 50%.
+    * OBV  - apakah volume mendukung arah harga. Konfirmasi atau divergensi
+             masuk kategori volatilitas & volume.
+    * ATR  - rezim volatilitas. Tidak punya arah, jadi dilaporkan sebagai
+             sinyal info (skor 0) dan tidak memengaruhi skor sama sekali.
+v1 tetap bisa dijalankan (`version=1`) supaya hasil lama bisa direproduksi
+dan dibandingkan di backtest.
+
 Jalankan: python analyze.py [--in output/raw.json] [--out output/latest.json]
 """
 
@@ -33,6 +46,8 @@ import indicators as ind
 
 log = logging.getLogger("analyze")
 
+SCORING_VERSION = 2
+
 CATEGORY_WEIGHTS = {
     "trend": 0.35,
     "momentum": 0.25,
@@ -44,11 +59,27 @@ CROSS_LOOKBACK = 3  # cross masih dianggap "baru" sampai N hari setelahnya
 VOLUME_SPIKE_MULT = 2.0
 MIN_CANDLES = 60  # butuh MA50 + sedikit margin
 
+# Ambang v2. Semuanya nilai buku teks yang ditetapkan SEBELUM backtest
+# dijalankan - bukan hasil penyetelan terhadap data historis.
+ADX_PERIOD = 14
+ADX_WEAK = 20.0
+ADX_STRONG = 25.0
+TREND_DAMPEN = 0.5
+ATR_PERIOD = 14
+ATR_PCTL_WINDOW = 180
+ATR_PCTL_MIN = 60
+ATR_EXTREME_PCTL = 90.0
+ATR_CALM_PCTL = 10.0
+OBV_MA = 20
 
-def _signal(sid: str, category: str, score: int, label: str, detail: str) -> dict[str, Any]:
+
+def _signal(
+    sid: str, category: str, score: int, label: str, detail: str, kind: str = "score"
+) -> dict[str, Any]:
     return {
         "id": sid,
         "category": category,
+        "kind": kind,
         "direction": "bullish" if score > 0 else "bearish" if score < 0 else "neutral",
         "score": score,
         "label": label,
@@ -56,13 +87,35 @@ def _signal(sid: str, category: str, score: int, label: str, detail: str) -> dic
     }
 
 
+def _info(sid: str, category: str, label: str, detail: str) -> dict[str, Any]:
+    """Sinyal konteks tanpa arah: tampil di output, tidak ikut dihitung."""
+    return _signal(sid, category, 0, label, detail, kind="info")
+
+
 def compute_indicators(ohlcv: list[dict[str, Any]]) -> dict[str, Any]:
     """Hitung semua indikator, kembalikan seri lengkapnya."""
     closes = [c["close"] for c in ohlcv]
+    highs = [c["high"] for c in ohlcv]
+    lows = [c["low"] for c in ohlcv]
     volumes = [c["volume"] for c in ohlcv]
 
     macd_line, macd_sig, macd_hist = ind.macd(closes)
     bb_up, bb_mid, bb_low = ind.bollinger(closes, 20, 2.0)
+
+    atr14 = ind.atr(highs, lows, closes, ATR_PERIOD)
+    atr_pct = [
+        (a / c * 100) if (a is not None and c) else None for a, c in zip(atr14, closes)
+    ]
+    # ATR dalam persen harga, dibandingkan dengan riwayatnya sendiri: "tinggi"
+    # dan "rendah" untuk BTC berbeda jauh dari aset lain, jadi ambang absolut
+    # tidak bermakna.
+    riwayat_atr = [v for v in atr_pct[-ATR_PCTL_WINDOW:] if v is not None]
+    atr_pctl = None
+    if atr_pct and atr_pct[-1] is not None and len(riwayat_atr) >= ATR_PCTL_MIN:
+        atr_pctl = ind.percentile_rank(riwayat_atr, atr_pct[-1])
+
+    adx14, plus_di, minus_di = ind.adx(highs, lows, closes, ADX_PERIOD)
+    obv = ind.obv(closes, volumes)
 
     return {
         "closes": closes,
@@ -77,11 +130,23 @@ def compute_indicators(ohlcv: list[dict[str, Any]]) -> dict[str, Any]:
         "bb_middle": bb_mid,
         "bb_lower": bb_low,
         "vol_ma20": ind.sma(volumes, 20),
+        "atr14": atr14,
+        "atr_pct": atr_pct,
+        "atr_pct_percentile": atr_pctl,
+        "atr_pct_window": len(riwayat_atr),
+        "adx14": adx14,
+        "plus_di": plus_di,
+        "minus_di": minus_di,
+        "obv": obv,
+        "obv_sma20": ind.sma(obv, OBV_MA),
     }
 
 
 def detect_signals(
-    ohlcv: list[dict[str, Any]], ta: dict[str, Any], fear_greed: dict[str, Any] | None
+    ohlcv: list[dict[str, Any]],
+    ta: dict[str, Any],
+    fear_greed: dict[str, Any] | None,
+    version: int = SCORING_VERSION,
 ) -> list[dict[str, Any]]:
     """Terapkan aturan sinyal ke kondisi hari terakhir."""
     signals: list[dict[str, Any]] = []
@@ -130,6 +195,21 @@ def detect_signals(
             f"Close {close:,.0f} vs MA50 {ma50:,.0f}",
         ))
 
+    adx_now = ta["adx14"][-1]
+    if version >= 2 and adx_now is not None:
+        pdi, mdi = ta["plus_di"][-1], ta["minus_di"][-1]
+        if adx_now >= ADX_STRONG:
+            signals.append(_info(
+                "adx_tren_kuat", "trend", "Tren kuat",
+                f"ADX({ADX_PERIOD}) {adx_now:.1f} - +DI {pdi:.1f} vs -DI {mdi:.1f}",
+            ))
+        elif adx_now < ADX_WEAK:
+            signals.append(_info(
+                "adx_tren_lemah", "trend", "Tren lemah, sinyal tren diredam",
+                f"ADX({ADX_PERIOD}) {adx_now:.1f} di bawah {ADX_WEAK:.0f} - "
+                f"skor kategori tren dikali {TREND_DAMPEN}",
+            ))
+
     # --- MOMENTUM ------------------------------------------------------
     if rsi is not None:
         if rsi < 30:
@@ -177,7 +257,7 @@ def detect_signals(
                 f"Histogram {hist:,.1f} - momentum masih di sisi turun",
             ))
 
-    # --- VOLATILITY ----------------------------------------------------
+    # --- VOLATILITY & VOLUME --------------------------------------------
     if bb_up is not None and bb_low is not None:
         if close < bb_low:
             signals.append(_signal(
@@ -205,6 +285,51 @@ def detect_signals(
             f"Volume {ratio:.1f}x rata-rata 20 hari",
         ))
 
+    if version >= 2:
+        obv_avg = ta["obv_sma20"][-1]
+        if obv_avg is not None and ma20 is not None:
+            harga_naik = close > ma20
+            volume_naik = ta["obv"][-1] > obv_avg
+            if harga_naik and volume_naik:
+                signals.append(_signal(
+                    "obv_konfirmasi_naik", "volatility", 25,
+                    "Volume mengonfirmasi kenaikan",
+                    "OBV di atas rata-rata 20 hari, harga di atas MA20",
+                ))
+            elif not harga_naik and not volume_naik:
+                signals.append(_signal(
+                    "obv_konfirmasi_turun", "volatility", -25,
+                    "Volume mengonfirmasi penurunan",
+                    "OBV di bawah rata-rata 20 hari, harga di bawah MA20",
+                ))
+            elif harga_naik:
+                signals.append(_signal(
+                    "obv_divergensi_bearish", "volatility", -20,
+                    "Kenaikan tanpa dukungan volume",
+                    "Harga di atas MA20 tapi OBV di bawah rata-rata 20 hari",
+                ))
+            else:
+                signals.append(_signal(
+                    "obv_divergensi_bullish", "volatility", 20,
+                    "Akumulasi saat harga lemah",
+                    "Harga di bawah MA20 tapi OBV di atas rata-rata 20 hari",
+                ))
+
+        pctl, atr_pct_now = ta["atr_pct_percentile"], ta["atr_pct"][-1]
+        if pctl is not None and atr_pct_now is not None:
+            if pctl >= ATR_EXTREME_PCTL:
+                signals.append(_info(
+                    "atr_volatilitas_ekstrem", "volatility", "Volatilitas ekstrem",
+                    f"ATR {atr_pct_now:.2f}% dari harga - persentil {pctl:.0f} "
+                    f"dalam {ta['atr_pct_window']} hari",
+                ))
+            elif pctl <= ATR_CALM_PCTL:
+                signals.append(_info(
+                    "atr_volatilitas_rendah", "volatility", "Volatilitas sangat rendah",
+                    f"ATR {atr_pct_now:.2f}% dari harga - persentil {pctl:.0f} "
+                    f"dalam {ta['atr_pct_window']} hari",
+                ))
+
     # --- SENTIMENT -----------------------------------------------------
     if fear_greed is not None:
         v = fear_greed["value"]
@@ -229,11 +354,46 @@ def detect_signals(
 
 
 def score_categories(signals: list[dict[str, Any]]) -> dict[str, int]:
-    """Jumlahkan skor per kategori, di-clamp ke -100..100."""
+    """Jumlahkan skor per kategori, di-clamp ke -100..100.
+
+    Sinyal info dilewati: kategori yang cuma berisi sinyal info tidak boleh
+    terhitung "aktif dengan skor 0", karena itu akan menarik komposit ke
+    netral tanpa ada informasi arah apa pun.
+    """
     totals: dict[str, int] = {}
     for sig in signals:
+        if sig.get("kind") == "info":
+            continue
         totals[sig["category"]] = totals.get(sig["category"], 0) + sig["score"]
     return {cat: max(-100, min(100, val)) for cat, val in totals.items()}
+
+
+def apply_adjustments(
+    category_scores: dict[str, int], ta: dict[str, Any], version: int = SCORING_VERSION
+) -> tuple[dict[str, int], list[dict[str, Any]]]:
+    """Terapkan pengubah skor antar-indikator, dan catat setiap perubahannya.
+
+    Setiap penyesuaian dicatat lengkap (sebelum, sesudah, alasan) supaya skor
+    akhir tetap bisa diaudit ulang dari output saja.
+    """
+    adjusted = dict(category_scores)
+    notes: list[dict[str, Any]] = []
+    if version < 2:
+        return adjusted, notes
+
+    adx_now = ta["adx14"][-1]
+    if adx_now is not None and adx_now < ADX_WEAK and "trend" in adjusted:
+        before = adjusted["trend"]
+        after = int(round(before * TREND_DAMPEN))
+        adjusted["trend"] = after
+        notes.append({
+            "category": "trend",
+            "factor": TREND_DAMPEN,
+            "before": before,
+            "after": after,
+            "reason": f"ADX({ADX_PERIOD}) {adx_now:.1f} di bawah {ADX_WEAK:.0f}",
+        })
+    return adjusted, notes
 
 
 def composite_score(category_scores: dict[str, int]) -> int:
@@ -275,20 +435,21 @@ def _r(value: float | None, digits: int) -> float | None:
     return None if value is None else round(value, digits)
 
 
-def analyze(raw: dict[str, Any]) -> dict[str, Any]:
+def analyze(raw: dict[str, Any], version: int = SCORING_VERSION) -> dict[str, Any]:
     """Ubah data mentah Fase 1 jadi output analisis final."""
     ohlcv = raw["ohlcv"]
     if len(ohlcv) < MIN_CANDLES:
         raise ValueError(f"butuh minimal {MIN_CANDLES} candle, hanya ada {len(ohlcv)}")
 
     ta = compute_indicators(ohlcv)
-    signals = detect_signals(ohlcv, ta, raw.get("fear_greed"))
-    cats = score_categories(signals)
+    signals = detect_signals(ohlcv, ta, raw.get("fear_greed"), version)
+    cats, adjustments = apply_adjustments(score_categories(signals), ta, version)
     score = composite_score(cats)
 
     closes = ta["closes"]
     last = ohlcv[-1]
     vol_ma = ta["vol_ma20"][-1]
+    obv_avg = ta["obv_sma20"][-1]
     glob = raw.get("global_market") or {}
 
     return {
@@ -319,6 +480,15 @@ def analyze(raw: dict[str, Any]) -> dict[str, Any]:
             "volume": round(last["volume"], 2),
             "volume_ma20": _r(vol_ma, 2),
             "volume_ratio": _r(last["volume"] / vol_ma if vol_ma else None, 2),
+            "atr14": _r(ta["atr14"][-1], 2),
+            "atr_pct": _r(ta["atr_pct"][-1], 3),
+            "atr_pct_percentile": _r(ta["atr_pct_percentile"], 1),
+            "adx14": _r(ta["adx14"][-1], 2),
+            "plus_di": _r(ta["plus_di"][-1], 2),
+            "minus_di": _r(ta["minus_di"][-1], 2),
+            # Level OBV absolut bergantung titik awal jendela data, jadi yang
+            # dilaporkan hanya posisinya terhadap rata-ratanya sendiri.
+            "obv_above_sma20": None if obv_avg is None else ta["obv"][-1] > obv_avg,
         },
         "sentiment": {
             "fear_greed": raw.get("fear_greed"),
@@ -331,12 +501,13 @@ def analyze(raw: dict[str, Any]) -> dict[str, Any]:
             "label": classify(score),
             "by_category": cats,
             "weights_used": {c: w for c, w in CATEGORY_WEIGHTS.items() if c in cats},
+            "adjustments": adjustments,
         },
         "meta": {
             "candles_used": len(ohlcv),
             "fetched_at": raw.get("fetched_at"),
             "fetch_errors": raw.get("fetch_errors", {}),
-            "scoring_version": 1,
+            "scoring_version": version,
         },
     }
 
@@ -349,6 +520,10 @@ def main() -> int:
         "--archive-dir", default="output/history",
         help="folder arsip harian; kosongkan ('') untuk melewati pengarsipan",
     )
+    parser.add_argument(
+        "--scoring-version", type=int, choices=(1, 2), default=SCORING_VERSION,
+        help="versi aturan scoring (1 untuk mereproduksi hasil lama)",
+    )
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -356,7 +531,7 @@ def main() -> int:
     try:
         with open(args.infile, encoding="utf-8") as fh:
             raw = json.load(fh)
-        result = analyze(raw)
+        result = analyze(raw, version=args.scoring_version)
     except Exception as exc:  # noqa: BLE001
         log.error("FATAL: %s", exc)
         return 1
@@ -376,9 +551,14 @@ def main() -> int:
             fh.write(payload)
         log.info("Arsip: %s", archive_path)
 
-    log.info("Data per %s, close %s", result["data_as_of"], result["price"]["close"])
+    log.info("Data per %s, close %s (scoring v%d)",
+             result["data_as_of"], result["price"]["close"], args.scoring_version)
     for sig in result["signals"]:
-        log.info("  [%-10s] %+4d  %s", sig["category"], sig["score"], sig["label"])
+        nilai = "info" if sig.get("kind") == "info" else f"{sig['score']:+d}"
+        log.info("  [%-10s] %4s  %s", sig["category"], nilai, sig["label"])
+    for adj in result["scores"]["adjustments"]:
+        log.info("  penyesuaian %s: %+d -> %+d (%s)",
+                 adj["category"], adj["before"], adj["after"], adj["reason"])
     log.info("Skor per kategori: %s", result["scores"]["by_category"])
     log.info("KOMPOSIT: %+d (%s) -> %s",
              result["scores"]["composite"], result["scores"]["label"], args.outfile)
