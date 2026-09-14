@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T16:13:23+00:00",
+  "generated_at": "2026-09-14T16:26:44+00:00",
   "data_as_of": "2026-09-13",
   "symbol": "BTCUSDT",
   "price": {
@@ -40,8 +40,8 @@
       "date": "2026-09-14",
       "value_yesterday": 61
     },
-    "btc_dominance_pct": 58.87,
-    "market_cap_change_24h_pct": -2.46
+    "btc_dominance_pct": 58.59,
+    "market_cap_change_24h_pct": -0.11
   },
   "signals": [
     {
@@ -118,10 +118,8 @@
   },
   "meta": {
     "candles_used": 200,
-    "fetched_at": "2026-09-14T04:23:25+00:00",
+    "fetched_at": "2026-09-14T16:26:44+00:00",
     "fetch_errors": {},
-    "scoring_version": 2,
-    "backfilled": false,
-    "rescored_from_version": 1
+    "scoring_version": 2
   }
 }
