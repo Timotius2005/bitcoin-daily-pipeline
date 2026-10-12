@@ -1,47 +1,47 @@
 {
-  "generated_at": "2026-10-11T06:23:44+00:00",
-  "data_as_of": "2026-10-10",
+  "generated_at": "2026-10-12T06:28:28+00:00",
+  "data_as_of": "2026-10-11",
   "symbol": "BTCUSDT",
   "price": {
-    "close": 82988.36,
-    "open": 82635.56,
-    "high": 83173.29,
-    "low": 82545.82,
-    "change_1d_pct": 0.43,
-    "change_7d_pct": -2.08,
-    "change_30d_pct": 8.38
+    "close": 83773.12,
+    "open": 82988.35,
+    "high": 84199.0,
+    "low": 82804.65,
+    "change_1d_pct": 0.95,
+    "change_7d_pct": -3.19,
+    "change_30d_pct": 8.48
   },
   "indicators": {
-    "rsi14": 51.7,
-    "ma20": 84406.37,
-    "ma50": 80830.45,
-    "macd_line": 993.37,
-    "macd_signal": 1561.25,
-    "macd_hist": -567.88,
-    "bb_upper": 86920.89,
-    "bb_middle": 84406.37,
-    "bb_lower": 81891.84,
-    "bb_percent_b": 0.218,
-    "volume": 7437.72,
-    "volume_ma20": 16601.16,
+    "rsi14": 54.59,
+    "ma20": 84264.02,
+    "ma50": 80964.41,
+    "macd_line": 928.23,
+    "macd_signal": 1434.65,
+    "macd_hist": -506.42,
+    "bb_upper": 86575.29,
+    "bb_middle": 84264.02,
+    "bb_lower": 81952.75,
+    "bb_percent_b": 0.394,
+    "volume": 6963.51,
+    "volume_ma20": 15351.17,
     "volume_ratio": 0.45,
-    "atr14": 2116.37,
-    "atr_pct": 2.55,
-    "atr_pct_percentile": 15.3,
-    "adx14": 35.36,
-    "plus_di": 24.17,
-    "minus_di": 21.0,
+    "atr14": 2064.8,
+    "atr_pct": 2.465,
+    "atr_pct_percentile": 10.3,
+    "adx14": 33.84,
+    "plus_di": 26.55,
+    "minus_di": 19.99,
     "obv_above_sma20": false
   },
   "sentiment": {
     "fear_greed": {
-      "value": 61,
+      "value": 69,
       "classification": "Greed",
-      "date": "2026-10-11",
-      "value_yesterday": 64
+      "date": "2026-10-12",
+      "value_yesterday": 61
     },
-    "btc_dominance_pct": 59.19,
-    "market_cap_change_24h_pct": -2.7
+    "btc_dominance_pct": 59.52,
+    "market_cap_change_24h_pct": -2.5
   },
   "signals": [
     {
@@ -51,7 +51,7 @@
       "direction": "bullish",
       "score": 40,
       "label": "MA20 di atas MA50",
-      "detail": "MA20 84,406 > MA50 80,830 - struktur tren jangka pendek naik"
+      "detail": "MA20 84,264 > MA50 80,964 - struktur tren jangka pendek naik"
     },
     {
       "id": "price_above_ma50",
@@ -60,7 +60,7 @@
       "direction": "bullish",
       "score": 30,
       "label": "Harga di atas MA50",
-      "detail": "Close 82,988 vs MA50 80,830"
+      "detail": "Close 83,773 vs MA50 80,964"
     },
     {
       "id": "adx_tren_kuat",
@@ -69,7 +69,7 @@
       "direction": "neutral",
       "score": 0,
       "label": "Tren kuat",
-      "detail": "ADX(14) 35.4 - +DI 24.2 vs -DI 21.0"
+      "detail": "ADX(14) 33.8 - +DI 26.5 vs -DI 20.0"
     },
     {
       "id": "macd_hist_negatif",
@@ -78,7 +78,7 @@
       "direction": "bearish",
       "score": -25,
       "label": "Histogram MACD negatif",
-      "detail": "Histogram -567.9 - momentum masih di sisi turun"
+      "detail": "Histogram -506.4 - momentum masih di sisi turun"
     },
     {
       "id": "obv_konfirmasi_turun",
@@ -94,19 +94,19 @@
       "category": "sentiment",
       "kind": "score",
       "direction": "bearish",
-      "score": -22,
+      "score": -38,
       "label": "Sentimen pasar: Greed",
-      "detail": "Fear & Greed Index 61 (Greed)"
+      "detail": "Fear & Greed Index 69 (Greed)"
     }
   ],
   "scores": {
-    "composite": 9,
+    "composite": 5,
     "label": "netral",
     "by_category": {
       "trend": 70,
       "momentum": -25,
       "volatility": -25,
-      "sentiment": -22
+      "sentiment": -38
     },
     "weights_used": {
       "trend": 0.35,
@@ -118,7 +118,7 @@
   },
   "meta": {
     "candles_used": 200,
-    "fetched_at": "2026-10-11T06:23:44+00:00",
+    "fetched_at": "2026-10-12T06:28:28+00:00",
     "fetch_errors": {},
     "scoring_version": 2
   }
