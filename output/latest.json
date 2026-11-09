@@ -1,47 +1,47 @@
 {
-  "generated_at": "2026-11-08T06:39:44+00:00",
-  "data_as_of": "2026-11-07",
+  "generated_at": "2026-11-09T07:08:00+00:00",
+  "data_as_of": "2026-11-08",
   "symbol": "BTCUSDT",
   "price": {
-    "close": 75867.59,
-    "open": 75844.0,
-    "high": 76249.99,
-    "low": 75571.08,
-    "change_1d_pct": 0.03,
-    "change_7d_pct": -2.21,
-    "change_30d_pct": -7.2
+    "close": 74851.44,
+    "open": 75867.58,
+    "high": 76200.0,
+    "low": 73510.0,
+    "change_1d_pct": -1.34,
+    "change_7d_pct": -4.47,
+    "change_30d_pct": -9.42
   },
   "indicators": {
-    "rsi14": 38.01,
-    "ma20": 79449.09,
-    "ma50": 81949.6,
-    "macd_line": -1475.51,
-    "macd_signal": -1143.84,
-    "macd_hist": -331.67,
-    "bb_upper": 84276.93,
-    "bb_middle": 79449.09,
-    "bb_lower": 74621.24,
-    "bb_percent_b": 0.129,
-    "volume": 5215.91,
-    "volume_ma20": 14585.24,
-    "volume_ratio": 0.36,
-    "atr14": 2263.41,
-    "atr_pct": 2.983,
-    "atr_pct_percentile": 67.5,
-    "adx14": 19.49,
-    "plus_di": 16.42,
-    "minus_di": 20.53,
+    "rsi14": 35.59,
+    "ma20": 79094.74,
+    "ma50": 81821.63,
+    "macd_line": -1610.47,
+    "macd_signal": -1237.16,
+    "macd_hist": -373.31,
+    "bb_upper": 84173.53,
+    "bb_middle": 79094.74,
+    "bb_lower": 74015.94,
+    "bb_percent_b": 0.082,
+    "volume": 9457.66,
+    "volume_ma20": 14418.51,
+    "volume_ratio": 0.66,
+    "atr14": 2293.88,
+    "atr_pct": 3.065,
+    "atr_pct_percentile": 73.6,
+    "adx14": 19.9,
+    "plus_di": 15.04,
+    "minus_di": 25.22,
     "obv_above_sma20": false
   },
   "sentiment": {
     "fear_greed": {
-      "value": 28,
+      "value": 29,
       "classification": "Fear",
-      "date": "2026-11-08",
-      "value_yesterday": 25
+      "date": "2026-11-09",
+      "value_yesterday": 28
     },
-    "btc_dominance_pct": 59.32,
-    "market_cap_change_24h_pct": -2.88
+    "btc_dominance_pct": 60.21,
+    "market_cap_change_24h_pct": -5.96
   },
   "signals": [
     {
@@ -51,7 +51,7 @@
       "direction": "bearish",
       "score": -40,
       "label": "MA20 di bawah MA50",
-      "detail": "MA20 79,449 < MA50 81,950 - struktur tren jangka pendek turun"
+      "detail": "MA20 79,095 < MA50 81,822 - struktur tren jangka pendek turun"
     },
     {
       "id": "price_below_ma50",
@@ -60,7 +60,7 @@
       "direction": "bearish",
       "score": -30,
       "label": "Harga di bawah MA50",
-      "detail": "Close 75,868 vs MA50 81,950"
+      "detail": "Close 74,851 vs MA50 81,822"
     },
     {
       "id": "adx_tren_lemah",
@@ -69,7 +69,7 @@
       "direction": "neutral",
       "score": 0,
       "label": "Tren lemah, sinyal tren diredam",
-      "detail": "ADX(14) 19.5 di bawah 20 - skor kategori tren dikali 0.5"
+      "detail": "ADX(14) 19.9 di bawah 20 - skor kategori tren dikali 0.5"
     },
     {
       "id": "rsi_lemah",
@@ -78,7 +78,7 @@
       "direction": "bullish",
       "score": 25,
       "label": "RSI lemah",
-      "detail": "RSI(14) 38.0 mendekati wilayah oversold"
+      "detail": "RSI(14) 35.6 mendekati wilayah oversold"
     },
     {
       "id": "macd_hist_negatif",
@@ -87,7 +87,7 @@
       "direction": "bearish",
       "score": -25,
       "label": "Histogram MACD negatif",
-      "detail": "Histogram -331.7 - momentum masih di sisi turun"
+      "detail": "Histogram -373.3 - momentum masih di sisi turun"
     },
     {
       "id": "obv_konfirmasi_turun",
@@ -103,19 +103,19 @@
       "category": "sentiment",
       "kind": "score",
       "direction": "bullish",
-      "score": 44,
+      "score": 42,
       "label": "Sentimen pasar: Fear",
-      "detail": "Fear & Greed Index 28 (Fear)"
+      "detail": "Fear & Greed Index 29 (Fear)"
     }
   ],
   "scores": {
-    "composite": -5,
+    "composite": -6,
     "label": "netral",
     "by_category": {
       "trend": -35,
       "momentum": 0,
       "volatility": -25,
-      "sentiment": 44
+      "sentiment": 42
     },
     "weights_used": {
       "trend": 0.35,
@@ -129,13 +129,13 @@
         "factor": 0.5,
         "before": -70,
         "after": -35,
-        "reason": "ADX(14) 19.5 di bawah 20"
+        "reason": "ADX(14) 19.9 di bawah 20"
       }
     ]
   },
   "meta": {
     "candles_used": 200,
-    "fetched_at": "2026-11-08T06:39:44+00:00",
+    "fetched_at": "2026-11-09T07:08:00+00:00",
     "fetch_errors": {},
     "scoring_version": 2
   }
