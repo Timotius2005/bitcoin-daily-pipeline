@@ -1,47 +1,47 @@
 {
-  "generated_at": "2026-11-23T08:08:53+00:00",
-  "data_as_of": "2026-11-22",
+  "generated_at": "2026-11-24T10:22:36+00:00",
+  "data_as_of": "2026-11-23",
   "symbol": "BTCUSDT",
   "price": {
-    "close": 61271.08,
-    "open": 60215.78,
-    "high": 61669.99,
-    "low": 58768.51,
-    "change_1d_pct": 1.75,
-    "change_7d_pct": -6.24,
-    "change_30d_pct": -24.53
+    "close": 61270.93,
+    "open": 61271.09,
+    "high": 64603.12,
+    "low": 60386.0,
+    "change_1d_pct": -0.0,
+    "change_7d_pct": -5.57,
+    "change_30d_pct": -24.25
   },
   "indicators": {
     "rsi14": 26.61,
-    "ma20": 69419.36,
-    "ma50": 76762.02,
-    "macd_line": -4896.97,
-    "macd_signal": -4137.24,
-    "macd_hist": -759.73,
-    "bb_upper": 82583.43,
-    "bb_middle": 69419.36,
-    "bb_lower": 56255.28,
-    "bb_percent_b": 0.191,
-    "volume": 20137.13,
-    "volume_ma20": 22168.51,
-    "volume_ratio": 0.91,
-    "atr14": 3011.32,
-    "atr_pct": 4.915,
-    "atr_pct_percentile": 99.2,
-    "adx14": 48.93,
-    "plus_di": 5.66,
-    "minus_di": 39.6,
+    "ma20": 68610.21,
+    "ma50": 76256.84,
+    "macd_line": -4812.7,
+    "macd_signal": -4272.33,
+    "macd_hist": -540.36,
+    "bb_upper": 81688.54,
+    "bb_middle": 68610.21,
+    "bb_lower": 55531.88,
+    "bb_percent_b": 0.219,
+    "volume": 27493.88,
+    "volume_ma20": 22915.2,
+    "volume_ratio": 1.2,
+    "atr14": 3097.45,
+    "atr_pct": 5.055,
+    "atr_pct_percentile": 99.7,
+    "adx14": 49.02,
+    "plus_di": 11.87,
+    "minus_di": 35.75,
     "obv_above_sma20": false
   },
   "sentiment": {
     "fear_greed": {
       "value": 11,
       "classification": "Extreme Fear",
-      "date": "2026-11-23",
+      "date": "2026-11-24",
       "value_yesterday": 11
     },
-    "btc_dominance_pct": 58.89,
-    "market_cap_change_24h_pct": -1.03
+    "btc_dominance_pct": 58.55,
+    "market_cap_change_24h_pct": -4.42
   },
   "signals": [
     {
@@ -51,7 +51,7 @@
       "direction": "bearish",
       "score": -40,
       "label": "MA20 di bawah MA50",
-      "detail": "MA20 69,419 < MA50 76,762 - struktur tren jangka pendek turun"
+      "detail": "MA20 68,610 < MA50 76,257 - struktur tren jangka pendek turun"
     },
     {
       "id": "price_below_ma50",
@@ -60,7 +60,7 @@
       "direction": "bearish",
       "score": -30,
       "label": "Harga di bawah MA50",
-      "detail": "Close 61,271 vs MA50 76,762"
+      "detail": "Close 61,271 vs MA50 76,257"
     },
     {
       "id": "adx_tren_kuat",
@@ -69,7 +69,7 @@
       "direction": "neutral",
       "score": 0,
       "label": "Tren kuat",
-      "detail": "ADX(14) 48.9 - +DI 5.7 vs -DI 39.6"
+      "detail": "ADX(14) 49.0 - +DI 11.9 vs -DI 35.7"
     },
     {
       "id": "rsi_oversold",
@@ -87,7 +87,7 @@
       "direction": "bearish",
       "score": -25,
       "label": "Histogram MACD negatif",
-      "detail": "Histogram -759.7 - momentum masih di sisi turun"
+      "detail": "Histogram -540.4 - momentum masih di sisi turun"
     },
     {
       "id": "obv_konfirmasi_turun",
@@ -105,7 +105,7 @@
       "direction": "neutral",
       "score": 0,
       "label": "Volatilitas ekstrem",
-      "detail": "ATR 4.91% dari harga - persentil 99 dalam 180 hari"
+      "detail": "ATR 5.06% dari harga - persentil 100 dalam 180 hari"
     },
     {
       "id": "fear_greed",
@@ -136,7 +136,7 @@
   },
   "meta": {
     "candles_used": 200,
-    "fetched_at": "2026-11-23T08:08:53+00:00",
+    "fetched_at": "2026-11-24T10:22:36+00:00",
     "fetch_errors": {},
     "scoring_version": 2
   }

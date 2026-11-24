@@ -1,0 +1,143 @@
+{
+  "generated_at": "2026-11-24T10:22:36+00:00",
+  "data_as_of": "2026-11-23",
+  "symbol": "BTCUSDT",
+  "price": {
+    "close": 61270.93,
+    "open": 61271.09,
+    "high": 64603.12,
+    "low": 60386.0,
+    "change_1d_pct": -0.0,
+    "change_7d_pct": -5.57,
+    "change_30d_pct": -24.25
+  },
+  "indicators": {
+    "rsi14": 26.61,
+    "ma20": 68610.21,
+    "ma50": 76256.84,
+    "macd_line": -4812.7,
+    "macd_signal": -4272.33,
+    "macd_hist": -540.36,
+    "bb_upper": 81688.54,
+    "bb_middle": 68610.21,
+    "bb_lower": 55531.88,
+    "bb_percent_b": 0.219,
+    "volume": 27493.88,
+    "volume_ma20": 22915.2,
+    "volume_ratio": 1.2,
+    "atr14": 3097.45,
+    "atr_pct": 5.055,
+    "atr_pct_percentile": 99.7,
+    "adx14": 49.02,
+    "plus_di": 11.87,
+    "minus_di": 35.75,
+    "obv_above_sma20": false
+  },
+  "sentiment": {
+    "fear_greed": {
+      "value": 11,
+      "classification": "Extreme Fear",
+      "date": "2026-11-24",
+      "value_yesterday": 11
+    },
+    "btc_dominance_pct": 58.55,
+    "market_cap_change_24h_pct": -4.42
+  },
+  "signals": [
+    {
+      "id": "ma20_below_ma50",
+      "category": "trend",
+      "kind": "score",
+      "direction": "bearish",
+      "score": -40,
+      "label": "MA20 di bawah MA50",
+      "detail": "MA20 68,610 < MA50 76,257 - struktur tren jangka pendek turun"
+    },
+    {
+      "id": "price_below_ma50",
+      "category": "trend",
+      "kind": "score",
+      "direction": "bearish",
+      "score": -30,
+      "label": "Harga di bawah MA50",
+      "detail": "Close 61,271 vs MA50 76,257"
+    },
+    {
+      "id": "adx_tren_kuat",
+      "category": "trend",
+      "kind": "info",
+      "direction": "neutral",
+      "score": 0,
+      "label": "Tren kuat",
+      "detail": "ADX(14) 49.0 - +DI 11.9 vs -DI 35.7"
+    },
+    {
+      "id": "rsi_oversold",
+      "category": "momentum",
+      "kind": "score",
+      "direction": "bullish",
+      "score": 50,
+      "label": "RSI oversold",
+      "detail": "RSI(14) 26.6 di bawah 30"
+    },
+    {
+      "id": "macd_hist_negatif",
+      "category": "momentum",
+      "kind": "score",
+      "direction": "bearish",
+      "score": -25,
+      "label": "Histogram MACD negatif",
+      "detail": "Histogram -540.4 - momentum masih di sisi turun"
+    },
+    {
+      "id": "obv_konfirmasi_turun",
+      "category": "volatility",
+      "kind": "score",
+      "direction": "bearish",
+      "score": -25,
+      "label": "Volume mengonfirmasi penurunan",
+      "detail": "OBV di bawah rata-rata 20 hari, harga di bawah MA20"
+    },
+    {
+      "id": "atr_volatilitas_ekstrem",
+      "category": "volatility",
+      "kind": "info",
+      "direction": "neutral",
+      "score": 0,
+      "label": "Volatilitas ekstrem",
+      "detail": "ATR 5.06% dari harga - persentil 100 dalam 180 hari"
+    },
+    {
+      "id": "fear_greed",
+      "category": "sentiment",
+      "kind": "score",
+      "direction": "bullish",
+      "score": 78,
+      "label": "Sentimen pasar: Extreme Fear",
+      "detail": "Fear & Greed Index 11 (Extreme Fear)"
+    }
+  ],
+  "scores": {
+    "composite": -2,
+    "label": "netral",
+    "by_category": {
+      "trend": -70,
+      "momentum": 25,
+      "volatility": -25,
+      "sentiment": 78
+    },
+    "weights_used": {
+      "trend": 0.35,
+      "momentum": 0.25,
+      "sentiment": 0.25,
+      "volatility": 0.15
+    },
+    "adjustments": []
+  },
+  "meta": {
+    "candles_used": 200,
+    "fetched_at": "2026-11-24T10:22:36+00:00",
+    "fetch_errors": {},
+    "scoring_version": 2
+  }
+}
