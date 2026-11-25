@@ -1,47 +1,47 @@
 {
-  "generated_at": "2026-11-24T10:22:36+00:00",
-  "data_as_of": "2026-11-23",
+  "generated_at": "2026-11-25T09:04:25+00:00",
+  "data_as_of": "2026-11-24",
   "symbol": "BTCUSDT",
   "price": {
-    "close": 61270.93,
-    "open": 61271.09,
-    "high": 64603.12,
-    "low": 60386.0,
-    "change_1d_pct": -0.0,
-    "change_7d_pct": -5.57,
-    "change_30d_pct": -24.25
+    "close": 59832.0,
+    "open": 61270.92,
+    "high": 61682.01,
+    "low": 59260.0,
+    "change_1d_pct": -2.35,
+    "change_7d_pct": -7.88,
+    "change_30d_pct": -25.35
   },
   "indicators": {
-    "rsi14": 26.61,
-    "ma20": 68610.21,
-    "ma50": 76256.84,
-    "macd_line": -4812.7,
-    "macd_signal": -4272.33,
-    "macd_hist": -540.36,
-    "bb_upper": 81688.54,
-    "bb_middle": 68610.21,
-    "bb_lower": 55531.88,
-    "bb_percent_b": 0.219,
-    "volume": 27493.88,
-    "volume_ma20": 22915.2,
-    "volume_ratio": 1.2,
-    "atr14": 3097.45,
-    "atr_pct": 5.055,
+    "rsi14": 24.55,
+    "ma20": 67576.61,
+    "ma50": 75738.14,
+    "macd_line": -4806.61,
+    "macd_signal": -4379.19,
+    "macd_hist": -427.42,
+    "bb_upper": 79981.78,
+    "bb_middle": 67576.61,
+    "bb_lower": 55171.44,
+    "bb_percent_b": 0.188,
+    "volume": 19707.4,
+    "volume_ma20": 22793.55,
+    "volume_ratio": 0.86,
+    "atr14": 3049.2,
+    "atr_pct": 5.096,
     "atr_pct_percentile": 99.7,
-    "adx14": 49.02,
-    "plus_di": 11.87,
-    "minus_di": 35.75,
+    "adx14": 49.3,
+    "plus_di": 11.2,
+    "minus_di": 36.35,
     "obv_above_sma20": false
   },
   "sentiment": {
     "fear_greed": {
-      "value": 11,
+      "value": 13,
       "classification": "Extreme Fear",
-      "date": "2026-11-24",
+      "date": "2026-11-25",
       "value_yesterday": 11
     },
-    "btc_dominance_pct": 58.55,
-    "market_cap_change_24h_pct": -4.42
+    "btc_dominance_pct": 57.8,
+    "market_cap_change_24h_pct": -4.4
   },
   "signals": [
     {
@@ -51,7 +51,7 @@
       "direction": "bearish",
       "score": -40,
       "label": "MA20 di bawah MA50",
-      "detail": "MA20 68,610 < MA50 76,257 - struktur tren jangka pendek turun"
+      "detail": "MA20 67,577 < MA50 75,738 - struktur tren jangka pendek turun"
     },
     {
       "id": "price_below_ma50",
@@ -60,7 +60,7 @@
       "direction": "bearish",
       "score": -30,
       "label": "Harga di bawah MA50",
-      "detail": "Close 61,271 vs MA50 76,257"
+      "detail": "Close 59,832 vs MA50 75,738"
     },
     {
       "id": "adx_tren_kuat",
@@ -69,7 +69,7 @@
       "direction": "neutral",
       "score": 0,
       "label": "Tren kuat",
-      "detail": "ADX(14) 49.0 - +DI 11.9 vs -DI 35.7"
+      "detail": "ADX(14) 49.3 - +DI 11.2 vs -DI 36.4"
     },
     {
       "id": "rsi_oversold",
@@ -78,7 +78,7 @@
       "direction": "bullish",
       "score": 50,
       "label": "RSI oversold",
-      "detail": "RSI(14) 26.6 di bawah 30"
+      "detail": "RSI(14) 24.6 di bawah 30"
     },
     {
       "id": "macd_hist_negatif",
@@ -87,7 +87,7 @@
       "direction": "bearish",
       "score": -25,
       "label": "Histogram MACD negatif",
-      "detail": "Histogram -540.4 - momentum masih di sisi turun"
+      "detail": "Histogram -427.4 - momentum masih di sisi turun"
     },
     {
       "id": "obv_konfirmasi_turun",
@@ -105,26 +105,26 @@
       "direction": "neutral",
       "score": 0,
       "label": "Volatilitas ekstrem",
-      "detail": "ATR 5.06% dari harga - persentil 100 dalam 180 hari"
+      "detail": "ATR 5.10% dari harga - persentil 100 dalam 180 hari"
     },
     {
       "id": "fear_greed",
       "category": "sentiment",
       "kind": "score",
       "direction": "bullish",
-      "score": 78,
+      "score": 74,
       "label": "Sentimen pasar: Extreme Fear",
-      "detail": "Fear & Greed Index 11 (Extreme Fear)"
+      "detail": "Fear & Greed Index 13 (Extreme Fear)"
     }
   ],
   "scores": {
-    "composite": -2,
+    "composite": -4,
     "label": "netral",
     "by_category": {
       "trend": -70,
       "momentum": 25,
       "volatility": -25,
-      "sentiment": 78
+      "sentiment": 74
     },
     "weights_used": {
       "trend": 0.35,
@@ -136,7 +136,7 @@
   },
   "meta": {
     "candles_used": 200,
-    "fetched_at": "2026-11-24T10:22:36+00:00",
+    "fetched_at": "2026-11-25T09:04:25+00:00",
     "fetch_errors": {},
     "scoring_version": 2
   }
