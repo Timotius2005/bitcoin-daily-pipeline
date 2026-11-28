@@ -1,47 +1,47 @@
 {
-  "generated_at": "2026-11-27T09:01:23+00:00",
-  "data_as_of": "2026-11-26",
+  "generated_at": "2026-11-28T08:23:29+00:00",
+  "data_as_of": "2026-11-27",
   "symbol": "BTCUSDT",
   "price": {
-    "close": 60577.18,
-    "open": 60458.0,
-    "high": 61622.38,
-    "low": 59915.0,
-    "change_1d_pct": 0.2,
-    "change_7d_pct": -2.27,
-    "change_30d_pct": -25.13
+    "close": 59923.1,
+    "open": 60577.18,
+    "high": 62248.91,
+    "low": 58792.37,
+    "change_1d_pct": -1.08,
+    "change_7d_pct": 1.65,
+    "change_30d_pct": -26.33
   },
   "indicators": {
-    "rsi14": 27.71,
-    "ma20": 66031.77,
-    "ma50": 74781.41,
-    "macd_line": -4548.32,
-    "macd_signal": -4463.89,
-    "macd_hist": -84.43,
-    "bb_upper": 77698.68,
-    "bb_middle": 66031.77,
-    "bb_lower": 54364.86,
-    "bb_percent_b": 0.266,
-    "volume": 16482.41,
-    "volume_ma20": 22804.25,
-    "volume_ratio": 0.72,
-    "atr14": 2967.85,
-    "atr_pct": 4.899,
-    "atr_pct_percentile": 96.9,
-    "adx14": 49.82,
-    "plus_di": 12.46,
-    "minus_di": 36.59,
+    "rsi14": 26.59,
+    "ma20": 65234.54,
+    "ma50": 74344.79,
+    "macd_line": -4432.07,
+    "macd_signal": -4457.52,
+    "macd_hist": 25.45,
+    "bb_upper": 76265.82,
+    "bb_middle": 65234.54,
+    "bb_lower": 54203.27,
+    "bb_percent_b": 0.259,
+    "volume": 21002.83,
+    "volume_ma20": 23593.59,
+    "volume_ratio": 0.89,
+    "atr14": 3002.75,
+    "atr_pct": 5.011,
+    "atr_pct_percentile": 97.5,
+    "adx14": 49.98,
+    "plus_di": 11.43,
+    "minus_di": 36.25,
     "obv_above_sma20": false
   },
   "sentiment": {
     "fear_greed": {
-      "value": 12,
+      "value": 10,
       "classification": "Extreme Fear",
-      "date": "2026-11-27",
-      "value_yesterday": 11
+      "date": "2026-11-28",
+      "value_yesterday": 12
     },
-    "btc_dominance_pct": 58.02,
-    "market_cap_change_24h_pct": -0.91
+    "btc_dominance_pct": 57.8,
+    "market_cap_change_24h_pct": -5.49
   },
   "signals": [
     {
@@ -51,7 +51,7 @@
       "direction": "bearish",
       "score": -40,
       "label": "MA20 di bawah MA50",
-      "detail": "MA20 66,032 < MA50 74,781 - struktur tren jangka pendek turun"
+      "detail": "MA20 65,235 < MA50 74,345 - struktur tren jangka pendek turun"
     },
     {
       "id": "price_below_ma50",
@@ -60,7 +60,7 @@
       "direction": "bearish",
       "score": -30,
       "label": "Harga di bawah MA50",
-      "detail": "Close 60,577 vs MA50 74,781"
+      "detail": "Close 59,923 vs MA50 74,345"
     },
     {
       "id": "adx_tren_kuat",
@@ -69,7 +69,7 @@
       "direction": "neutral",
       "score": 0,
       "label": "Tren kuat",
-      "detail": "ADX(14) 49.8 - +DI 12.5 vs -DI 36.6"
+      "detail": "ADX(14) 50.0 - +DI 11.4 vs -DI 36.2"
     },
     {
       "id": "rsi_oversold",
@@ -78,16 +78,16 @@
       "direction": "bullish",
       "score": 50,
       "label": "RSI oversold",
-      "detail": "RSI(14) 27.7 di bawah 30"
+      "detail": "RSI(14) 26.6 di bawah 30"
     },
     {
-      "id": "macd_hist_negatif",
+      "id": "macd_bullish_cross",
       "category": "momentum",
       "kind": "score",
-      "direction": "bearish",
-      "score": -25,
-      "label": "Histogram MACD negatif",
-      "detail": "Histogram -84.4 - momentum masih di sisi turun"
+      "direction": "bullish",
+      "score": 50,
+      "label": "MACD cross bullish",
+      "detail": "MACD memotong signal line ke atas 0 hari lalu"
     },
     {
       "id": "obv_konfirmasi_turun",
@@ -105,26 +105,26 @@
       "direction": "neutral",
       "score": 0,
       "label": "Volatilitas ekstrem",
-      "detail": "ATR 4.90% dari harga - persentil 97 dalam 180 hari"
+      "detail": "ATR 5.01% dari harga - persentil 98 dalam 180 hari"
     },
     {
       "id": "fear_greed",
       "category": "sentiment",
       "kind": "score",
       "direction": "bullish",
-      "score": 76,
+      "score": 80,
       "label": "Sentimen pasar: Extreme Fear",
-      "detail": "Fear & Greed Index 12 (Extreme Fear)"
+      "detail": "Fear & Greed Index 10 (Extreme Fear)"
     }
   ],
   "scores": {
-    "composite": -3,
+    "composite": 17,
     "label": "netral",
     "by_category": {
       "trend": -70,
-      "momentum": 25,
+      "momentum": 100,
       "volatility": -25,
-      "sentiment": 76
+      "sentiment": 80
     },
     "weights_used": {
       "trend": 0.35,
@@ -136,7 +136,7 @@
   },
   "meta": {
     "candles_used": 200,
-    "fetched_at": "2026-11-27T09:01:23+00:00",
+    "fetched_at": "2026-11-28T08:23:29+00:00",
     "fetch_errors": {},
     "scoring_version": 2
   }
